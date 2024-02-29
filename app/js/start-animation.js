@@ -427,7 +427,7 @@ export default function startAnimation(params) {
 	
 		window.addEventListener("load", () => {
 	
-			//history.scrollRestoration = "manual";
+			history.scrollRestoration = "manual";
 			document.body.classList.add("is-init");
 
 			loaderTimeline.to(loader, {
