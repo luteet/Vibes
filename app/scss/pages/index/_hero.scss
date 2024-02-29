@@ -1,0 +1,143 @@
+.hero {
+
+	min-height: calc(var(--svh,1vh) * 100);
+	min-height: 100svh;
+
+	perspective: 400px;
+	/* display: flex;
+	flex-direction: column;
+	justify-content: center; */
+
+	&__decor {
+		position: absolute;
+		inset: 0;
+
+		z-index: 2;
+
+		width: 100%;
+		min-height: calc(var(--svh,1vh) * 100);
+		min-height: 100svh;
+
+		perspective: 400px;
+	}
+
+	// .hero__decor_element
+
+	&__decor_element {
+		position: absolute;
+		&:nth-child(1) {
+			left: 0; top: 0;
+			width: 25vw; height: auto; max-width: 9.375rem;
+			transform: translate3d(var(--x),var(--y),0) scale3d(var(--scale,1), var(--scale,1), 1) rotate(12deg);
+			transform-origin: right bottom;
+
+			@include _992 {
+				width: 20.4375rem; max-width: none;
+			}
+
+			img {
+				width: 100%; height: auto;
+			}
+		}
+
+		&:nth-child(2) {
+			right: 0; bottom: 0;
+			width: 40vw; height: auto; max-width: 12.5rem;
+			transform: translate3d(var(--x),var(--y),0) scale3d(var(--scale,1), var(--scale,1), 0.5) rotate(-5deg);
+			transform-origin: 35% top;
+
+			-webkit-mask: linear-gradient(180deg, #000 70%, transparent 100%);
+
+			@include _992 {
+				width: 25rem; max-width: none;
+				top: calc(var(--svh,1vh) * 50); top: 50svh;
+				bottom: auto;
+			}
+
+			img {
+				width: 100%; height: auto;
+			}
+		}
+	}
+
+	// .hero__loader
+
+	&__loader {
+		
+
+	}
+
+	&__body {
+		min-height: calc(var(--svh,1vh) * 100);
+		min-height: 100svh;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	// .hero__title
+
+	&__title {
+
+		padding-top: 0.9375rem;
+		
+		color: var(--white);
+
+		.line {
+
+			&:nth-child(odd) {
+				text-align: end !important;
+				transform: translate3d(var(--x-2),0,0);
+				//transform: translate3d(50%,0,0);
+			}
+
+			&:nth-child(1) {
+				transform: translate3d(var(--x-1),0,0);
+			}
+
+			&:nth-child(2) {
+				transform: translate3d(var(--x-2),0,0);
+			}
+
+			&:nth-child(3) {
+				transform: translate3d(var(--x-3),0,0);
+			}
+		}
+	}
+
+	&__mob_title {
+		color: var(--white);
+		text-align: center;
+		opacity: 0;
+	}
+
+	// .hero__text
+
+	&__text {
+		@include _992 {
+			position: absolute;
+			right: var(--container-padding); top: calc(var(--svh,1vh) * 50); top: 50svh;
+			transform: translate3d(var(--x,0),-50%,0);
+
+			width: 11rem;
+			margin: 0; max-width: none;
+			text-align: end;
+
+			padding-top: 0;
+			opacity: 1;
+		}
+
+		padding-top: 1.5rem;
+
+		color: var(--white);
+		font-size: 1rem;
+		line-height: 143.75%;
+		font-weight: 500;
+		text-align: center;
+
+		max-width: 13.8125rem; margin: 0 auto;
+
+		opacity: 0;
+	}
+}

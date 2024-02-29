@@ -1,0 +1,186 @@
+.video_block {
+	position: relative;
+	display: inline-block;
+
+	width: 100%; aspect-ratio: 343/192;
+
+	@include _992 {
+		width: 10.375rem; height: 10.375rem;
+
+		transform-origin: center bottom;
+		transform: scale(0.8) translateZ(0);
+
+		transition: transform .4s ease;
+
+		&.is-playing {
+			transform: scale(1) translateZ(0);
+		}
+	
+		&.is-playing &__progress {
+			opacity: 1; visibility: visible;
+		}
+	}
+
+	@media (any-hover: hover) and (min-width: 992px) {
+		&:hover {
+			transform: scale(1) translateZ(0);
+		}
+	
+		&:active {
+			transform: scale(1) translateZ(0);
+		}
+	}
+
+	
+
+	video {
+		position: absolute;
+		inset: 0;
+		width: 100%; height: 100%;
+		object-fit: cover;
+		border-radius: 1.25rem;
+
+		@include _992 {
+			border-radius: 50%;
+		}
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		width: 100%; height: 100%;
+		border-radius: 50%;
+	}
+
+	// .about__video_progress
+
+	&__progress {
+
+		//background: linear-gradient(180deg, rgba(0, 0, 0, 0) 70.21%, #000000 106.35%);
+		opacity: 0; visibility: hidden;
+		transition: opacity .3s ease, visibility .3s ease;
+		transition-delay: 0.5s;
+
+		display: none;
+		align-items: center;
+		justify-content: center;
+
+		position: absolute;
+		left: 50%; top: 50%;
+		transform: translate(-50%,-50%);
+
+		width: calc(100% - 0.5rem); height: calc(100% - 0.5rem);
+		border-radius: 50%;
+
+		z-index: 2;
+
+		@include _992 {
+			display: flex;
+		}
+
+		svg {
+			
+			
+			position: relative;
+			width: 100%; height: 100%;
+
+			--size: 100%;
+			--half-size: calc(var(--size) / 2);
+			--stroke-width: 0.1875rem;
+			--radius: calc((var(--size) - var(--stroke-width)) / 2);
+			--circumference: calc(var(--radius) * pi * 2);
+			--dash: calc((var(--progress,0) * var(--circumference)) / 100);
+			//animation: progress-animation 5s linear 0s 1 forwards;
+			z-index: 2;
+		  }
+		  
+		svg circle {
+			cx: var(--half-size);
+			cy: var(--half-size);
+			r: var(--radius);
+			stroke-width: var(--stroke-width);
+			fill: none;
+			stroke-linecap: round;
+		}
+		
+		svg circle {
+			transform: rotate(-90deg);
+			transform-origin: var(--half-size) var(--half-size);
+			stroke-dasharray: var(--dash) calc(var(--circumference) - var(--dash));
+			transition: stroke-dasharray 0.5s linear 0s;
+			stroke: #fff;
+		}
+	}
+
+	// .about__video_info
+
+	&__info {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		position: absolute;
+		left: 0%; bottom: 0;
+		width: 100%;
+
+		padding: 0.625rem;
+
+		gap: 0.3125rem;
+		color: var(--white);
+	}
+
+	// .about__video_sound
+
+	&__sound {
+
+		display: inline-grid;
+		overflow: hidden;
+
+		> * {
+			grid-area: 1/1;
+
+			&:nth-child(2) {
+				transform: translate3d(0,100%,0);
+			}
+
+			transition: transform .3s ease;
+		}
+	}
+
+	// .about__video_time
+
+	&__time {
+
+		font-size: 1rem;
+		line-height: 116.666667%;
+
+		@include _992 {
+			font-size: 0.75rem;
+		}
+
+		display: inline-grid;
+		overflow: hidden;
+
+		> * {
+			grid-area: 1/1;
+
+			&:nth-child(2) {
+				transform: translate3d(0,100%,0);
+			}
+
+			transition: transform .3s ease
+		}
+	}
+
+	@media (any-hover: hover) {
+		&:hover &__time > * {
+			&:nth-child(1) {
+				transform: translate3d(0,-100%,0);
+			}
+			&:nth-child(2) {
+				transform: translate3d(0,0%,0);
+			}
+		}
+	}
+}

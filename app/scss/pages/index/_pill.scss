@@ -1,0 +1,71 @@
+.pill {
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	height: 100vh;
+
+	// .pill__title
+
+	&__title {
+		color: var(--white);
+
+		display: flex;
+		flex-direction: column;
+
+		text-align: center;
+
+		visibility: hidden;
+
+		small {
+			display: inline-block;
+			font-size: 0.135ch;
+			line-height: 1.4;
+			letter-spacing: normal;
+			max-width: 6.25rem;
+			text-transform: uppercase;
+			transform: translate(0,-3ch);
+			//max-width: 0.5ch;
+		}
+	}
+
+	// .pill__decor
+
+	&__decor {
+		position: absolute;
+		left: 0; top: 0;
+		width: 100%; height: 100%;
+
+		transform: translate3d(0,100%,0) scale(2);
+
+	}
+
+	// .pill__decor_item
+
+	&__decor_item {
+		position: absolute;
+		left: 50%; top: 50%;
+
+		img {
+			width: 100%; height: auto;
+		}
+
+		&:nth-child(1) {
+			transform: translate3d(-99.5%,-50%,0);
+			width: calc(50vw - 1rem); height: auto;
+			@include _992 {
+				width: 25%;
+				transform: translate3d(-99.5%,-50%,0);
+			}
+		}
+
+		&:nth-child(2) {
+			transform: translate3d(-0.5%,-50%,0);
+			width: calc(50vw - 1rem); height: auto;
+			@include _992 {
+				width: 25%;
+			}
+		}
+	}
+}

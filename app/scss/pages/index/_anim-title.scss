@@ -1,0 +1,25 @@
+.anim_title {
+
+	min-height: 100vh;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	// .anim_title__value
+
+	&__value {
+		width: 100%;
+		text-align: center;
+
+		> * {
+			&:nth-child(1) {
+				transform: translate3d(-100%,0,0);
+			}
+
+			&:nth-child(2) {
+				transform: translate3d(100%,0,0);
+			}
+		}
+	}
+}

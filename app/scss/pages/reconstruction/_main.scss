@@ -1,0 +1,180 @@
+.reconstruction {
+
+	color: var(--white);
+	text-align: center;
+
+	display: flex;
+	flex-direction: column;
+
+	min-height: 100vh;
+	min-height: 100svh;
+
+	padding-top: 1.5rem; padding-bottom: 1.5rem;
+	@include _550 {
+		padding-top: 2.5rem; padding-bottom: 2.5rem;
+	}
+
+	// .reconstruction__slogan
+
+	&__slogan {
+		display: inline-flex;
+		align-items: center;
+
+		align-self: center;
+
+		color: var(--white);
+
+		padding: 0.55rem 1.25rem 0.4063rem;
+		height: 1.75rem;
+
+		border: 0.0625rem solid var(--white);
+		border-radius: 2.5rem;
+
+		font-family: var(--title-font);
+		line-height: 100%;
+		font-size: 0.75rem;
+		font-weight: 500;
+		text-transform: uppercase;
+	}
+
+	// .reconstruction__hero
+
+	&__hero {
+		flex: 1 1;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		padding: 1.875rem 0;
+	}
+
+	// .reconstruction__heading
+
+	&__heading {
+		font-weight: 600;
+		font-size: 0.875rem;
+		line-height: 1;
+		letter-spacing: -0.04em;
+	}
+
+	// .reconstruction__title
+
+	&__title {
+
+		padding: 1.1875rem 0.3125rem 0;
+		font-weight: 300;
+
+		@include _992 {
+			padding: 1.1875rem 0.3125rem 0;
+		}
+	}
+
+	// .reconstruction__text
+
+	&__text {
+		padding-top: 1.5rem;
+		margin: 0 auto;
+
+		max-width: 18.4375rem;
+		font-size: 1rem;
+		line-height: 143.75%;
+	}
+
+	// .reconstruction__email
+
+	&__email {
+		font-family: var(--title-font);
+		color: var(--white);
+		font-weight: 300;
+		font-size: 1.5625rem;
+		line-height: 125%;
+		//letter-spacing: -0.01em;
+
+		display: inline-grid;
+		overflow: hidden;
+
+		@include _992 {
+			font-size: 2rem;
+		}
+
+		@media (any-hover: hover) {
+			&:hover > * {
+				&:nth-child(1) {
+					transform: translate3d(0,-150%,0);
+				}
+				&:nth-child(2) {
+					transform: translate3d(0,0%,0);
+				}
+			}
+		}
+
+		> * {
+			grid-area: 1/1;
+
+			&:nth-child(2) {
+				transform: translate3d(0,150%,0);
+			}
+
+			@media (any-hover: hover) {
+				transition: transform .4s ease;
+			}
+		}
+	}
+
+	// .reconstruction__social
+
+	&__social {
+		padding-top: 1.875rem;
+
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.625rem;
+
+		a {
+			width: 3rem; height: 3rem;
+			border-radius: 50%;
+			background: #222228;
+
+			color: var(--white);
+
+			display: grid;
+			overflow: hidden;
+
+			@include _550 {
+				width: 2.75rem; height: 2.75rem;
+			}
+
+			svg {
+				width: 55%; height: auto;
+
+				grid-area: 1/1;
+				align-self: center; justify-self: center;
+
+				transition: transform .3s ease;
+
+				&:nth-child(2) {
+					transform: translate3d(0,150%,0);
+				}
+			}
+
+			@media (any-hover: hover) {
+				transition: background .2s ease;
+
+				&:hover {
+					background: #3B3B46;
+				}
+
+				&:hover svg {
+					&:nth-child(1) {
+						transform: translate3d(0,-150%,0);
+					}
+					&:nth-child(2) {
+						transform: translate3d(0,0%,0);
+					}
+				}
+			}
+		}
+	}
+}

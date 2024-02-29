@@ -1,0 +1,54 @@
+.footer {
+
+	display: flex;
+	flex-direction: column-reverse;
+
+	@include _550 {
+		display: grid;
+		grid-template-columns: 2fr 1.3fr;
+	}
+
+	padding-top: 3.625rem; padding-bottom: 1.5rem;
+
+	// .footer__copyright
+
+	&__copyright {
+
+		color: #6A6A74;
+		font-size: 1.125rem;
+		line-height: 133%;
+		letter-spacing: -0.04em;
+
+		padding-top: 0.625rem;
+		@include _992 {
+			padding-top: 0;
+		}
+	}
+
+	// .footer__nav
+
+	&__nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+
+		@include _992 {
+			justify-content: center;
+		}
+
+		a {
+			display: inline-block;
+			color: #6A6A74;
+			font-size: 1.125rem;
+			line-height: 133%;
+			letter-spacing: -0.04em;
+
+			@media (any-hover: hover) {
+				transition: color .2s ease;
+				&:hover {
+					color: var(--white);
+				}
+			}
+		}
+	}
+}

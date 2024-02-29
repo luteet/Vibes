@@ -1,0 +1,119 @@
+
+@font-face {
+	@include font-include('Inter', 400, swap, normal, 'Inter-Regular');
+}
+
+@font-face {
+	@include font-include('Inter', 500, swap, normal, 'Inter-Medium');
+}
+
+@font-face {
+	@include font-include('Nohemi', 300, swap, normal, 'Nohemi-Light');
+}
+
+@font-face {
+	@include font-include('Nohemi', 500, swap, normal, 'Nohemi-Medium');
+}
+
+@font-face {
+	@include font-include('Manrope', 500, swap, normal, 'Manrope-Medium');
+}
+
+@font-face {
+	@include font-include('Manrope', 600, swap, normal, 'Manrope-SemiBold');
+}
+
+.main-title {
+
+	font-family: var(--title-font);
+	
+	font-size: 3.125rem; // 50px
+	line-height: 105%;
+	letter-spacing: -0.04em;
+	font-weight: 300;
+
+	&.is-large {
+
+		font-size: 2.75rem; // 44px
+		svg {
+			flex: 0 0 1ch; width: 1ch; height: auto;
+			translate: 0 0.125rem;
+		}
+		
+		@include _550 {
+			font-size: 5rem; // 80px
+			svg {
+				flex: 0 0 1.2ch; width: 1.2ch; height: auto;
+				translate: initial;
+			}
+		}
+
+		@include _992 {
+			font-size: 9.375rem; // 150px
+		}
+	}
+
+	&.is-min {
+		font-size: 2.5rem; // 150px
+		@include _550 {
+			font-size: 4rem; // 64px
+		}
+
+		@include _992 {
+			font-size: 6.5625rem; // 105px
+		}
+	}
+	
+	@include _992 {
+		font-size: 6.5625rem; // 105px
+	}
+
+	svg {
+		flex: 0 0 1.2ch; width: 1.2ch; height: auto;
+	}
+}
+
+.title {
+	
+	font-family: var(--title-font);
+	font-weight: 300;
+
+	font-size: 2.5rem; // 40px
+	line-height: 110%;
+	letter-spacing: -0.04em;
+
+	&.is-min {
+		font-size: 2rem; // 32px
+	}
+
+	svg {
+		width: 1ch; height: auto; 
+		transform: translate(0,0.08ch);
+	}
+
+	@include _768 {
+		font-size: 3.125rem; // 50px
+		&.is-min {
+			font-size: 3.125rem; // 50px
+		}
+	}
+
+	@include _992 {
+		font-size: 3.75rem; // 60px
+		&.is-min {
+			font-size: 3.75rem; // 60px
+		}
+	}
+
+}
+
+.section-title {
+
+	font-family: var(--title-font);
+	font-weight: 700;
+
+}
+
+.txt-center {
+	text-align: center;
+}
