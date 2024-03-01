@@ -268,7 +268,7 @@
 
 		@include _992 {
 			margin-left: 0;
-			align-self: stretch;
+			align-self: stretch; justify-self: end;
 			grid-row: auto; grid-column: auto;
 		}
 	}
