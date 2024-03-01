@@ -11,6 +11,10 @@
 		min-height: 100vh;
 	}
 
+	& + .pin-spacer {
+		z-index: 2 !important;
+	}
+
 	// .statistic__title
 
 	&__title {
