@@ -30,9 +30,16 @@
 		//min-height: 75svh;
 		cal-inline {
 			iframe {
+				
 				height: 75vh !important;
 				height: 75svh !important;
+				
 				overflow-y: auto;
+
+				@media (min-width: 1885px) {
+					height: 55vh !important;
+					height: 55svh !important;
+				}
 			}
 		}
 	}
