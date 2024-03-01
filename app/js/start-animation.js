@@ -103,7 +103,7 @@ export default function startAnimation(params) {
 		
 	
 		initTimeline.to(loader, {
-			right: "25%",
+			right: "23.5vw",
 	
 			duration: 2,
 			ease: "power2.inOut",
