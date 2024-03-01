@@ -390,19 +390,20 @@ section {
 	}
 }
 
-.play_cursor {
+.play_cursor, .pause_cursor {
 
 	position: fixed;
 	left: 50%; top: -6.25rem;
 	translate: -50% -50%;
 	
-	rotate: 90deg;
+	//rotate: 90deg;
 
-	--r: 0.3125rem; /* border radius */
+	//--r: 0.3125rem; /* border radius */
 	  
-	width: 2.75rem;
+	width: 2.5rem; height: 2.75rem;
+	clip-path: url(#play-icon);
 	//background: rebeccapurple;
-	aspect-ratio: 1/cos(30deg);
+	/* aspect-ratio: 1/cos(30deg);
 	--_g:calc(tan(60deg)*var(--r)) bottom var(--r),#000 98%,#0000 101%;
 	-webkit-mask:
 		conic-gradient(from -30deg at 50% calc(200% - 3*var(--r)/2),#000 60deg,#0000 0)
@@ -410,7 +411,7 @@ section {
 		radial-gradient(var(--r) at 50% calc(2*var(--r)),#000 98%,#0000 101%),
 		radial-gradient(var(--r) at left  var(--_g)),
 		radial-gradient(var(--r) at right var(--_g));
-	clip-path: polygon(50% 0,100% 100%,0 100%);
+	clip-path: polygon(50% 0,100% 100%,0 100%); */
 	object-fit: cover;
 	background: #D9D9D9;
 	mix-blend-mode: difference;
@@ -427,4 +428,8 @@ section {
 		scale: 1;
 		visibility: visible;
 	}
+}
+
+.pause_cursor {
+	clip-path: url(#pause-icon);
 }

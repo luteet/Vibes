@@ -225,8 +225,7 @@ export default function startAnimation(params) {
 					customMouse();
 	
 				}, 0)
-	
-				
+
 			}
 
 		}, "-=3")
@@ -242,6 +241,7 @@ export default function startAnimation(params) {
 
 		loaderTimeline.to(loader, {
 			"--background-1": "90deg",
+			ease: "linear",
 			duration: 1,
 			onComplete: () => {
 				gsap.set(loader, {
@@ -269,7 +269,7 @@ export default function startAnimation(params) {
 
 			setTimeout(() => {
 				loaderTimeline.resume()
-			},1200)
+			},1000)
 	
 			gsap.to(params.header, {
 
@@ -413,6 +413,7 @@ export default function startAnimation(params) {
 
 		loaderTimeline.to(loader, {
 			"--background-1": "90deg",
+			ease: "linear",
 			duration: 1,
 			onComplete: () => {
 				gsap.set(loader, {
@@ -432,7 +433,8 @@ export default function startAnimation(params) {
 
 			loaderTimeline.to(loader, {
 				"--background-2": "465deg",
-				duration: 1,
+				duration: 1.5,
+				ease: "linear",
 				onComplete: () => {
 					initTimeline.resume();
 				}
@@ -440,7 +442,7 @@ export default function startAnimation(params) {
 
 			setTimeout(() => {
 				loaderTimeline.resume()
-			},1200)
+			},1000)
 
 			gsap.to(params.header, {
 

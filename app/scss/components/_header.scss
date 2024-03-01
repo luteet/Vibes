@@ -19,8 +19,6 @@
 		display: grid;
 		grid-template-columns: 1fr 3fr 1fr;
 		justify-content: stretch;
-
-		background: transparent;
 	}
 
 	perspective: 400px;
@@ -30,7 +28,24 @@
 	/* transition: transform 1.5s ease;
 	transform: translate3d(0,-100%,0); */
 
-	background: var(--theme-color-1-reverse);
+	&.on-top {
+		background: transparent;
+		&::before {
+			opacity: 0;
+		}
+	}
+
+	&::before {
+		content: '';
+		position: absolute;
+		left: 0; top: 0;
+		width: 100%; height: 100%;
+		background: var(--theme-color-1-reverse);
+		opacity: 1;
+		z-index: -1;
+
+		transition: opacity .3s ease;
+	}
 
 	/* &.is-loaded {
 		transform: translate3d(0,0,0);

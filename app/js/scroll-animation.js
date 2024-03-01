@@ -5,7 +5,9 @@ export default function scrollAnimation(params) {
 
 	const 
 	html = document.querySelector("html"),
+
 	decorElement = document.querySelectorAll(".hero__decor_element"),
+	header = document.querySelector(".header"),
 	hero = document.querySelector(".hero"),
 	heroTitle = document.querySelector(".hero__title"),
 	heroMobTitle = document.querySelector(".hero__mob_title"),
@@ -31,6 +33,7 @@ export default function scrollAnimation(params) {
 			end: "max",
 			onUpdate: (self) => {
 				self.direction === -1 ? showAnim.play() : showAnim.reverse()
+				self.progress == 0 ? header.classList.add("on-top") : header.classList.remove("on-top")
 			}
 		});
 
@@ -366,6 +369,7 @@ export default function scrollAnimation(params) {
 			end: "max",
 			onUpdate: (self) => {
 				self.direction === -1 ? showAnim.play() : showAnim.reverse()
+				self.progress == 0 ? header.classList.add("on-top") : header.classList.remove("on-top")
 			}
 		});
 

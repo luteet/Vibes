@@ -120,6 +120,9 @@ body {
 		justify-content: center;
 
 		background: transparent;
+		@include _992 {
+			display: none;
+		}
 
 		svg {
 			width: 100%; height: auto;
@@ -196,7 +199,8 @@ body {
 			grid-area: 1/1;
 			align-self: center; justify-self: center;
 
-			width: 40%; height: 100%;
+			width: auto; height: 100%;
+			padding: 0.625rem;
 
 			transition: transform .3s ease;
 
@@ -330,6 +334,7 @@ body {
 		display: none;
 		@include _992 {
 			display: block;
+			flex: 1 1;
 		}
 	}
 
@@ -389,7 +394,6 @@ body {
 			font-weight: 500;
 			font-size: 0.75rem;
 			line-height: 117%;
-			
 			letter-spacing: -0.01em;
 			text-transform: uppercase;
 
@@ -402,7 +406,6 @@ body {
 			}
 
 			@media (any-hover: hover) {
-
 
 				&:hover {
 					color: var(--primary);

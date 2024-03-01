@@ -1,7 +1,8 @@
 export default function customMouse() {
 
 	const customCursor = document.querySelector(".custom_cursor"),
-	playCursor = document.querySelector(".play_cursor");
+	playCursor = document.querySelector(".play_cursor"),
+	pauseCursor = document.querySelector(".pause_cursor");
 	//customCursor.style.display = "flex";
 	
 	const getDeviceType = () => {
@@ -24,12 +25,12 @@ export default function customMouse() {
 
 	const device = getDeviceType();
 	
-	let xCTo = gsap.quickTo(".custom_cursor, .play_cursor", "left", {
+	let xCTo = gsap.quickTo(".custom_cursor, .play_cursor, .pause_cursor", "left", {
 		duration: 0.2,
 		ease: "power3"
 	});
 
-	let yCTo = gsap.quickTo(".custom_cursor, .play_cursor", "top", {
+	let yCTo = gsap.quickTo(".custom_cursor, .play_cursor, .pause_cursor", "top", {
 		duration: 0.2,
 		ease: "power3"
 	});
@@ -64,7 +65,7 @@ export default function customMouse() {
 		})
 	})
 
-	document.querySelectorAll(".button, .feedback__check label, .magnetic_button, .feedback__file_remove, .header__nav_list a").forEach(activeMouseElement => {
+	document.querySelectorAll(".button, .feedback__check label, .is-min-active-mouse, .magnetic_button, .feedback__file_remove, .header__nav_list a").forEach(activeMouseElement => {
 		activeMouseElement.addEventListener("mouseenter", () => {
 			if(device == "desktop") {
 				if(activeMouseElement.classList.contains("is-min-cursor")) {
@@ -97,7 +98,11 @@ export default function customMouse() {
 		activeMouseElement.addEventListener("mouseenter", () => {
 			if(device == "desktop") {
 				customCursor.classList.add("is-hidden");
-				playCursor.classList.add("is-active")
+				if(!activeMouseElement.classList.contains("is-playing")) {
+					playCursor.classList.add("is-active")
+				} else {
+					pauseCursor.classList.add("is-active")
+				}
 			}
 		})
 
@@ -105,6 +110,7 @@ export default function customMouse() {
 			if(device == "desktop") {
 				customCursor.classList.remove("is-hidden");
 				playCursor.classList.remove("is-active")
+				pauseCursor.classList.remove("is-active")
 			}
 		})
 	})

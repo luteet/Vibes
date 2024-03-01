@@ -75,10 +75,10 @@
 								</span>
 							</div>
 							<div class="cases__card_content">
-								<h3 class="cases__card_title">BMW</h3>
+								<h3 class="cases__card_title">Ryanair</h3>
 								<div class="cases__card_text">
 									<p>
-										Automotive Innovation. Our update delivered a sleek website redesign and a more intuitive UI.
+										Revolutionizing budget travel with a revamped app: sleeker UI, improved UX, and new features.
 									</p>
 								</div>
 							</div>
@@ -109,10 +109,10 @@
 								</span>
 							</div>
 							<div class="cases__card_content">
-								<h3 class="cases__card_title">Charité</h3>
+								<h3 class="cases__card_title">BMW</h3>
 								<div class="cases__card_text">
 									<p>
-										Healthcare Redefined. Showcased how medical websites can radiate positivity, simplifying the site's structure.
+										Automotive Innovation. Our update delivered a sleek website redesign and a more intuitive UI.
 									</p>
 								</div>
 							</div>
@@ -127,6 +127,40 @@
 									<source srcset="img/index/cases/case-image-mobile-3.avif" type="image/avif">
 									<source srcset="img/index/cases/case-image-mobile-3.webp" type="image/webp">
 									<img src="img/index/cases/case-image-3.jpg" alt="" width="0" height="0" loading="lazy">
+								</picture>
+							</div>
+							<div class="cases__card_header">
+								<ul class="cases__card_tags">
+									<li>
+										UI/ux
+									</li>
+									<li>
+										Brand Identity
+									</li>
+								</ul>
+								<span class="cases__card_year tag_item">
+									2023
+								</span>
+							</div>
+							<div class="cases__card_content">
+								<h3 class="cases__card_title">Charité</h3>
+								<div class="cases__card_text">
+									<p>
+										Healthcare Redefined. Showcased how medical websites can radiate positivity, simplifying the site's structure.
+									</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="cases__card">
+						<a href="#" class="cases__card_body is-active-mouse">
+							<div class="cases__card_background" aria-hidden="true">
+								<picture>
+									<source srcset="img/index/cases/case-image-4.avif" type="image/avif" media="(min-width: 992px)">
+									<source srcset="img/index/cases/case-image-4.webp" type="image/webp" media="(min-width: 992px)">
+									<source srcset="img/index/cases/case-image-mobile-4.avif" type="image/avif">
+									<source srcset="img/index/cases/case-image-mobile-4.webp" type="image/webp">
+									<img src="img/index/cases/case-image-4.jpg" alt="" width="0" height="0" loading="lazy">
 								</picture>
 							</div>
 							<div class="cases__card_header">
@@ -204,10 +238,10 @@
 				<div class="video_block__info">
 					<div class="video_block__sound">
 						<svg width="16" height="16">
-							<use href="img/sprites.svg#sound-off"></use>
+							<use href="img/sprites.svg?v=1#sound-off"></use>
 						</svg>
 						<svg width="16" height="16">
-							<use href="img/sprites.svg#sound-off"></use>
+							<use href="img/sprites.svg?v=1#sound-on"></use>
 						</svg>
 					</div>
 					<span class="video_block__time">
@@ -321,7 +355,7 @@
 					<ul class="feedback__check_list">
 						<li>
 							<label>
-								<input type="checkbox" name="service" value="Website Design">
+								<input type="radio" name="service" value="Website Design">
 								<span>
 									<span>Website Design</span>
 									<span>Website Design</span>
@@ -330,7 +364,7 @@
 						</li>
 						<li>
 							<label>
-								<input type="checkbox" name="service" value="Website Development">
+								<input type="radio" name="service" value="Website Development">
 								<span>
 									<span>Website Development</span>
 									<span>Website Development</span>
@@ -339,7 +373,7 @@
 						</li>
 						<li>
 							<label>
-								<input type="checkbox" name="service" value="App Design">
+								<input type="radio" name="service" value="App Design">
 								<span>
 									<span>App Design</span>
 									<span>App Design</span>
@@ -348,7 +382,7 @@
 						</li>
 						<li>
 							<label>
-								<input type="checkbox" name="service" value="Branding & Identity">
+								<input type="radio" name="service" value="Branding & Identity">
 								<span>
 									<span>Branding & Identity</span>
 									<span>Branding & Identity</span>
@@ -357,11 +391,11 @@
 						</li>
 					</ul>
 				</div>
-				<label class="feedback__field">
+				<label class="feedback__field is-min-active-mouse">
 					<input type="text" name="full-name" placeholder="Full name" required>
 					<span aria-hidden="true">Full name*</span>
 				</label>
-				<label class="feedback__field" data-error-text="">
+				<label class="feedback__field is-min-active-mouse" data-error-text="error text">
 					<input type="email" name="email" placeholder="Email" required>
 					<span aria-hidden="true">Email*</span>
 				</label>
@@ -372,7 +406,7 @@
 					<ul class="feedback__check_list">
 						<li>
 							<label>
-								<input type="checkbox" name="Budget" value="less than 800$">
+								<input type="radio" name="budget" value="less than 800$">
 								<span>
 									<span>less than 800$</span>
 									<span>less than 800$</span>
@@ -381,7 +415,7 @@
 						</li>
 						<li>
 							<label>
-								<input type="checkbox" name="Budget" value="800$ – 1500$">
+								<input type="radio" name="budget" value="800$ – 1500$">
 								<span>
 									<span>800$ – 1500$</span>
 									<span>800$ – 1500$</span>
@@ -390,7 +424,7 @@
 						</li>
 						<li>
 							<label>
-								<input type="checkbox" name="Budget" value="1500$ – 2000$">
+								<input type="radio" name="budget" value="1500$ – 2000$">
 								<span>
 									<span>1500$ – 2000$</span>
 									<span>1500$ – 2000$</span>
@@ -399,7 +433,7 @@
 						</li>
 						<li>
 							<label>
-								<input type="checkbox" name="Budget" value="2000$ – 2500$">
+								<input type="radio" name="budget" value="2000$ – 2500$">
 								<span>
 									<span>2000$ – 2500$</span>
 									<span>2000$ – 2500$</span>
@@ -460,7 +494,7 @@
 					</div>
 				</div>
 				<div class="feedback__about_footer">
-					<a href="mailto:tentuagency@gmail.com" class="feedback__about_email">
+					<a href="mailto:tentuagency@gmail.com" class="feedback__about_email is-min-active-mouse">
 						tentuagency@gmail.com
 					</a>
 					<ul class="feedback__social">

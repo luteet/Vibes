@@ -49,8 +49,6 @@ body.addEventListener('click', function (event) {
 			element.classList.toggle('is-mobile-menu-active')
 		});
 
-		
-	
 	}
 	
 	// =-=-=-=-=-=-=-=-=-=-=-=- </menu-in-header> -=-=-=-=-=-=-=-=-=-=-=-=
@@ -62,26 +60,32 @@ body.addEventListener('click', function (event) {
 	const videoBlock = $(".video_block")
 	if(videoBlock) {
 	
-		const element = videoBlock.querySelector("video");
+		const element = videoBlock.querySelector("video"), playEvent = new Event("play");
 
 		if(element.muted) {
+
 			element.muted = false;
 			element.loop = false;
 			element.removeAttribute("muted");
 			element.removeAttribute("loop");
 			element.currentTime = 0;
 			element.play();
+			element.dispatchEvent(playEvent)
 
 			videoBlock.classList.add("is-playing");
 
 			document.querySelector(".play_cursor").classList.remove("is-active");
-			document.querySelector(".custom_cursor").classList.remove("is-hidden");
+			document.querySelector(".pause_cursor").classList.add("is-active");
 
 		} else {
 			if(videoBlock.classList.contains("is-playing")) {
 				element.pause();
+				document.querySelector(".play_cursor").classList.add("is-active");
+				document.querySelector(".pause_cursor").classList.remove("is-active");
 			} else {
 				element.play();
+				document.querySelector(".play_cursor").classList.remove("is-active");
+				document.querySelector(".pause_cursor").classList.add("is-active");
 			}
 		}
 		
@@ -144,23 +148,31 @@ document.querySelectorAll(".video_block").forEach(block => {
 
 	const video = block.querySelector("video"),
 	time = block.querySelectorAll(".video_block__time span");
+
+	let progress, interval;
 	
 	video.addEventListener("play", () => {
-		if(!video.muted) block.classList.add("is-playing");
+		if(!video.muted) {
+			block.classList.add("is-playing");
+			interval = setInterval(() => {
+				progress = video.currentTime / video.duration * 100;
+				if(progress) block.style.setProperty("--progress", progress)
+			},50)
+		}
 	})
 	
 	video.addEventListener("pause", () => {
-		if(!video.muted) block.classList.remove("is-playing");
+		if(!video.muted) {
+			block.classList.remove("is-playing");
+			clearInterval(interval)
+		}
 	})
 
-	let progress;
-
 	setInterval(() => {
-		progress = video.currentTime / video.duration * 100;
-		if(progress) block.style.setProperty("--progress", progress)
-
 		time.forEach(time => time.textContent = formatTime(video.currentTime));
-	},500)
+	},1000)
+
+	
 })
 
 // =-=-=-=-=-=-=-=-=-=-=-=- </video> -=-=-=-=-=-=-=-=-=-=-=-=

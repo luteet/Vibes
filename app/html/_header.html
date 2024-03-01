@@ -4,7 +4,11 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="theme-color" content="#030304">
-	<title>Document</title>
+	<link rel="icon" href="img/favicon.png" sizes="32x32">
+	<link rel="icon" href="img/favicon.png" sizes="192x192">
+	<link rel="apple-touch-icon" href="img/favicon.png">
+	<meta name="msapplication-TileImage" content="img/favicon.png">
+	<title>Vibes</title>
 	<link rel="stylesheet" href="css/style.min.css">
 </head>
 <body>
@@ -17,12 +21,21 @@
 			Close
 		</span>
 	</div>
+	<div aria-hidden="true">
+		<svg class="visually-hidden">
+			<clipPath id="play-icon" clipPathUnits="objectBoundingBox"><path d="M0.967,0.465 C1,0.487,1,0.542,0.967,0.564 L0.098,1 C0.054,1,0,1,0,0.957 L0,0.072 C0,0.028,0.054,0,0.098,0.022 L0.967,0.465"></path></clipPath>
+		</svg>
+		<svg class="visually-hidden">
+			<clipPath id="pause-icon" clipPathUnits="objectBoundingBox"><path d="M0,0.158 C0,0.071,0.084,0,0.187,0 C0.291,0,0.375,0.071,0.375,0.158 V0.842 C0.375,0.929,0.291,1,0.187,1 C0.084,1,0,0.929,0,0.842 V0.158 M0.625,0.158 C0.625,0.071,0.709,0,0.813,0 C0.916,0,1,0.071,1,0.158 V0.842 C1,0.929,0.916,1,0.813,1 C0.709,1,0.625,0.929,0.625,0.842 V0.158"></path></clipPath>
+		</svg>
+	</div>
 	<div class="play_cursor" aria-hidden="true"></div>
+	<div class="pause_cursor" aria-hidden="true"></div>
 	<div class="loader">
 		Vibe With Us
 	</div>
 	<div class="wrapper">
-		<header class="header container">
+		<header class="header container on-top">
 			<div class="header__logo">
 				<a href="index.html" class="header__logo_link">
 					<img src="img/logo.svg" alt="Logo" width="70" height="20" class="header__logo_img">
