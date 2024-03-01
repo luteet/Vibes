@@ -94,6 +94,20 @@ export default function customMouse() {
 		})
 	})
 
+	document.querySelectorAll("#feedback-form").forEach(block => {
+		block.addEventListener("mouseenter", () => {
+			if(device == "desktop") {
+				customCursor.classList.add("is-hidden");
+			}
+		})
+
+		block.addEventListener("mouseleave", () => {
+			if(device == "desktop") {
+				customCursor.classList.remove("is-hidden");
+			}
+		})
+	})
+
 	document.querySelectorAll(".video_block").forEach(activeMouseElement => {
 		activeMouseElement.addEventListener("mouseenter", () => {
 			if(device == "desktop") {

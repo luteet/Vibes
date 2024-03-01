@@ -24,6 +24,17 @@
 		@include _992 {
 			max-width: 36.75rem; padding-top: 3.75rem;
 		}
+
+		
+
+		//min-height: 75svh;
+		cal-inline {
+			iframe {
+				height: 75vh !important;
+				height: 75svh !important;
+				overflow-y: auto;
+			}
+		}
 	}
 
 	// .feedback__check

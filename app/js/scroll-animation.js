@@ -1,7 +1,7 @@
 
 export default function scrollAnimation(params) {
 
-	
+	//setTimeout(() => params.lenis.scrollTo(0),1000)
 
 	const 
 	html = document.querySelector("html"),
@@ -16,7 +16,6 @@ export default function scrollAnimation(params) {
 
 	const cases = document.querySelector(".cases"), 
 	casesInner = document.querySelector(".cases__inner");
-
 
 	let mm = gsap.matchMedia();
 
@@ -48,8 +47,6 @@ export default function scrollAnimation(params) {
 				pinSpacing: false,
 			}
 		});
-
-		
 	
 		heroScrollTimeline.pause();
 		
