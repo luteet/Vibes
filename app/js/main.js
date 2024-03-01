@@ -108,6 +108,7 @@ function resize() {
 
 	html.style.setProperty("--height-header", header.offsetHeight + "px");
 	html.style.setProperty("--vh", window.innerHeight * 0.01 + "px");
+	html.style.setProperty("--vw", window.innerWidth * 0.01 + "px");
 	if(windowSize != window.innerWidth) {
 		html.style.setProperty("--svh", window.innerHeight * 0.01 + "px");
 	}

@@ -409,6 +409,8 @@
 
 		cursor: pointer;
 
+		transition: background .2s ease;
+
 		@include _768 {
 			padding: 0.625rem 1.25rem;
 			max-width: 12.5rem;
@@ -431,6 +433,13 @@
 						transform: translate3d(0,0,0);
 					}
 				}
+			}
+		}
+
+		&:active {
+			background: #3B3B46;
+			@include _992 {
+				background: #222228;
 			}
 		}
 
@@ -633,6 +642,13 @@
 		letter-spacing: -0.04em;
 		color: var(--white);
 
+		@media (max-width: 991px) {
+			transition: color .2s ease;
+			&:active {
+				color: #6A6A74;
+			}
+		}
+
 		@include _550 {
 			font-size: 2rem;
 		}
@@ -679,7 +695,16 @@
 				}
 			}
 
-			@media (any-hover: hover) {
+			@media (max-width: 991px) {
+				transition: background .2s ease;
+
+				&:active {
+					background: #3B3B46;
+				}
+			}
+
+			@media (any-hover: hover) and (min-width: 992px) {
+
 				transition: background .2s ease;
 
 				&:hover {

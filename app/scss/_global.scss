@@ -199,11 +199,23 @@ section {
 	&.is-light {
 		background: var(--white);
 		color: var(--primary);
+
+		transition: background .2s ease;
+		
+		&:active {
+			background: #CBCCD7;
+		}
 	}
 
 	&.is-dark {
 		background: var(--primary);
 		color: var(--white);
+
+		transition: background .2s ease;
+		
+		&:active {
+			background: #3B3B46;
+		}
 	}
 
 	span {
