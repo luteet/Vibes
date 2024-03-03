@@ -101,6 +101,8 @@ body {
 
 	display: flex;
 	flex-direction: column;
+	
+	
 
 	//background: var(--background-color, var(--primary));
 
@@ -111,11 +113,34 @@ body {
 		height: auto;
 	}
 
+	&:not(.is-loaded) {
+		padding-right: var(--scrollbar-width);
+	}
+
 	&.is-mobile-menu-active {
-		
 		overflow: hidden;
 	}
 
+}
+
+body.is-popup-active .header {
+	@include _992 {
+		width: calc(100% - var(--popup-padding,0px));
+		right: var(--popup-padding,0px);
+	}
+}
+
+body:not(.is-loaded) .header {
+	@include _992 {
+		width: calc(100% - var(--load-padding,0px));
+		right: var(--load-padding,0px);
+	}
+}
+
+body.is-light .header {
+	&::before {
+		border-color: #9FAECE;
+	}
 }
 
 body.is-init .wrapper {
@@ -188,13 +213,18 @@ section {
 
 	background: var(--theme-color-1);
 	color: var(--theme-color-1-reverse);
-	font-weight: 500;
 
+	font-family: var(--main-font);
+	font-weight: 600;
 	font-size: 0.875rem;
 	line-height: 100%;
 
 	border-radius: 3.125rem;
 	overflow: hidden;
+
+	svg {
+		flex: 0 0 1.25rem; width: 1.25rem; height: auto;
+	}
 
 	&.is-light {
 		background: var(--white);
@@ -238,10 +268,17 @@ section {
 
 	@media (any-hover: hover) {
 
-		//transition: transform .3s ease;
+		&:not(.magnetic_button) {
+			transition: transform .3s ease;
+		}
+
+		&:not(.magnetic_button):hover {
+			transform: scale3d(0.9,0.9,0.5);
+		}
 
 		&:hover {
 			//transform: scale3d(0.9,0.9,0.5);
+			
 			span:nth-child(1) {
 				transform: translate3d(0,-300%,0);
 			}

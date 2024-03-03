@@ -1,7 +1,7 @@
 /* import changeTheme from "./change-theme.js";
 import sectionCases from "./section-cases.js" */
-import customMouse from "./mouse.js"
-import scrollAnimation from "./scroll-animation.js"
+import customMouse from "./mouse.js?v=2"
+import scrollAnimation from "./scroll-animation.js?v=2"
 
 export default function startAnimation(params) {
 
@@ -62,11 +62,15 @@ export default function startAnimation(params) {
 		};
 	}
 
-	const decorElement = document.querySelectorAll(".hero__decor_element"),
+	const 
+	html = document.querySelector("html"),
+	decorElement = document.querySelectorAll(".hero__decor_element"),
 	heroTitle = document.querySelector(".hero__title"),
 	heroMobTitle = document.querySelector(".hero__mob_title"),
 	heroText = document.querySelector(".hero__text"),
 	loader = document.querySelector(".loader");
+
+	html.style.setProperty("--load-padding", window.innerWidth - document.body.offsetWidth + "px");
 	
 	history.scrollRestoration = "manual";
 
@@ -101,9 +105,9 @@ export default function startAnimation(params) {
 			});
 		})
 	
-		gsap.set(loader, {
-			right: "50%",
-		})
+		/* gsap.set(loader, {
+			left: "50%",
+		}) */
 	
 		gsap.set(heroTitle, {
 			"--x-1": "120%",
@@ -113,12 +117,12 @@ export default function startAnimation(params) {
 	
 		gsap.set(decorElement[0], {
 			"--y": "-150%",
-			"--x": "45%",
+			"--x": "35%",
 		})
 	
 		gsap.set(decorElement[1], {
 			"--y": "150%",
-			"--x": "-40%",
+			"--x": "-45%",
 		})
 	
 		gsap.set(heroText, {
@@ -140,7 +144,7 @@ export default function startAnimation(params) {
 		
 	
 		initTimeline.to(loader, {
-			right: "23.5vw",
+			left: "76.5vw",
 	
 			duration: 2,
 			ease: "power2.inOut",
@@ -155,7 +159,7 @@ export default function startAnimation(params) {
 		}, "-=2.5")
 	
 		initTimeline.to(decorElement[1], {
-			"--y": "25%",
+			"--y": "10%",
 			
 			duration: 2,
 			ease: "power2.inOut",
@@ -206,6 +210,7 @@ export default function startAnimation(params) {
 					gsap.ticker.lagSmoothing(0); */
 	
 					document.body.classList.add("is-loaded");
+					html.style.setProperty("--load-padding", 0 + "px");
 	
 					document.querySelectorAll(".prototypes__container").forEach(container => {
 	
@@ -277,7 +282,7 @@ export default function startAnimation(params) {
 
 		gsap.set(loader, {
 			"--background-1": "235deg",
-			"--background-2": "270deg",
+			"--background-2": "290deg",
 			"--opacity": "0",
 		})
 
@@ -311,7 +316,7 @@ export default function startAnimation(params) {
 
 			setTimeout(() => {
 				loaderTimeline.resume()
-			},1000)
+			},500)
 	
 			gsap.to(params.header, {
 
@@ -350,7 +355,7 @@ export default function startAnimation(params) {
 		})
 	
 		gsap.set(loader, {
-			right: "50%", top: "50%",
+			left: "50%", top: "50%",
 		})
 	
 		gsap.set(decorElement[0], {
@@ -364,7 +369,7 @@ export default function startAnimation(params) {
 		})
 	
 		initTimeline.to(loader, {
-			right: "50%", top: `${getCoords(heroMobTitle).top - loader.offsetHeight}px`,
+			left: "50%", top: `${getCoords(heroMobTitle).top - loader.offsetHeight}px`,
 	
 			duration: 2,
 			//ease: "power3.out",
@@ -484,7 +489,7 @@ export default function startAnimation(params) {
 
 			setTimeout(() => {
 				loaderTimeline.resume()
-			},0)
+			},500)
 
 			gsap.to(params.header, {
 
@@ -495,8 +500,17 @@ export default function startAnimation(params) {
 				ease: "power2.inOut",
 
 			})
+
+			
 			
 		})
+
+		window.addEventListener("orientationchange", () => {
+			//console.log("event")
+			setTimeout(() => loader.style.top = `${getCoords(heroMobTitle).top - loader.offsetHeight}px`,500)
+		})
+
+		
 	})
 	
 	

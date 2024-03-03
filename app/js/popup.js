@@ -26,9 +26,10 @@ export default function Popup(arg) {
 				if(popup.classList.contains('popup')) {
 
 					popup.style.display = 'flex';
-
+					const activePopups = document.querySelectorAll('.popup.is-active');
+					
 					//body.classList.remove('is-popup-active');
-					html.style.setProperty('--popup-padding', window.innerWidth - body.offsetWidth + 'px');
+					if(activePopups.length <= 0) html.style.setProperty('--popup-padding', window.innerWidth - body.offsetWidth + 'px');
 					body.classList.add('is-popup-active');
 
 					if (saveID) history.pushState('', "", id);
@@ -36,7 +37,7 @@ export default function Popup(arg) {
 					setTimeout(() => {
 						if (!initStart) {
 							popup.classList.add('is-active');
-							setTimeout(() => popupCheck = true, 400)
+							setTimeout(() => popupCheck = true, 1000)
 						} else {
 							popup.classList.add('is-transition-none');
 							popup.classList.add('is-active');
@@ -49,7 +50,7 @@ export default function Popup(arg) {
 			} else {
 				return new Error(`Not found "${id}"`)
 			}
-		} else setTimeout(() => popupCheck = true, 500);
+		} else setTimeout(() => popupCheck = true, 1100);
 	}
 
 	const close = function (popupClose) {
@@ -73,7 +74,7 @@ export default function Popup(arg) {
 				function closeFunc() {
 					const activePopups = document.querySelectorAll('.popup.is-active');
 
-					if (activePopups.length < 1) {
+					if (activePopups.length < 1 && !popup.classList.contains("open-popup")) {
 						body.classList.remove('is-popup-active');
 						html.style.setProperty('--popup-padding', '0px');
 					}
@@ -89,7 +90,7 @@ export default function Popup(arg) {
 					popup.style.display = 'none';
 				}
 
-				setTimeout(closeFunc, 400)
+				setTimeout(closeFunc, 1000)
 
 			}, 0)
 

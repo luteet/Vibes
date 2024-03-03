@@ -33,12 +33,16 @@
 				
 				height: 75vh !important;
 				height: 75svh !important;
-				
+
 				overflow-y: auto;
 
 				@media (min-width: 1885px) {
 					height: 55vh !important;
 					height: 55svh !important;
+				}
+
+				&.-z-10.mb-6.mt-auto.pt-6.block {
+					display: none;
 				}
 			}
 		}

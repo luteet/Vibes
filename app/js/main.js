@@ -1,7 +1,6 @@
 import Popup from "./popup.js";
 import form from "./form.js";
-//import sliders from "./sliders.js";
-import startAnimation from "./start-animation.js?v=4"
+import startAnimation from "./start-animation.js?v=6"
 
 const 
 	body = document.querySelector('body'),

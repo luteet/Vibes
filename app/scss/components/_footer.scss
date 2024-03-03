@@ -32,7 +32,10 @@
 		flex-wrap: wrap;
 		gap: 1rem;
 
+		padding-top: 0.625rem;
+
 		@include _992 {
+			padding-top: 0;
 			justify-content: center;
 		}
 

@@ -27,7 +27,7 @@
 		position: absolute;
 		&:nth-child(1) {
 			left: 0; top: 0;
-			width: 25vw; height: auto; max-width: 9.375rem;
+			width: min(25vh, 25vw); height: auto; max-width: 9.375rem;
 			transform: translate3d(var(--x),var(--y),0) scale3d(var(--scale,1), var(--scale,1), 1) rotate(12deg);
 			transform-origin: right bottom;
 
@@ -43,7 +43,7 @@
 		&:nth-child(2) {
 			right: 0; bottom: 0;
 			width: 40vw; height: auto; max-width: 12.5rem;
-			transform: translate3d(var(--x),var(--y),0) scale3d(var(--scale,1), var(--scale,1), 0.5) rotate(-5deg);
+			transform: translate3d(calc(var(--x) - var(--load-padding,0px)),var(--y),0) scale3d(var(--scale,1), var(--scale,1), 0.5) rotate(-5deg);
 			transform-origin: 35% top;
 
 			-webkit-mask: linear-gradient(180deg, #000 70%, transparent 100%);
@@ -70,6 +70,7 @@
 	&__body {
 		min-height: calc(var(--svh,1vh) * 100);
 		min-height: 100svh;
+		padding-bottom: 0rem;
 
 		display: flex;
 		flex-direction: column;
@@ -80,7 +81,8 @@
 
 	&__title {
 
-		padding-top: 0.9375rem;
+		padding-bottom: 1.5rem;
+		padding-right: var(--load-padding,0px);
 		
 		color: var(--white);
 
@@ -110,6 +112,7 @@
 		color: var(--white);
 		text-align: center;
 		opacity: 0;
+		
 	}
 
 	// .hero__text
@@ -117,8 +120,8 @@
 	&__text {
 		@include _992 {
 			position: absolute;
-			right: var(--container-padding); top: calc(var(--svh,1vh) * 50); top: 50svh;
-			transform: translate3d(var(--x,0),-50%,0);
+			right: calc(var(--container-padding) + var(--load-padding,0px)); top: calc(var(--svh,1vh) * 50); top: 50svh;
+			transform: translate3d(var(--x,0),-75%,0);
 
 			width: 11rem;
 			margin: 0; max-width: none;

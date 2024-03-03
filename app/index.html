@@ -286,29 +286,67 @@
 		<div id="services-scene">
 			<section class="our_expertise">
 				<div class="our_expertise__inner">
-					<h2 class="our_expertise__title main-title is-min">
-						Our Expertise
-					</h2>
-					<ul class="our_expertise__list">
-						@@loop("html/_our_expertise_item.html", [
-							{
-								"title": "Website Design",
-								"image": "1"
-							},
-							{
-								"title": "App Design",
-								"image": "2"
-							},
-							{
-								"title": "Website Development",
-								"image": "3"
-							},
-							{
-								"title": "Branding & Identity",
-								"image": "4"
-							},
-						])
-					</ul>
+					<div class="our_expertise__hero">
+						<h2 class="our_expertise__title main-title is-min">
+							Our Expertise
+						</h2>
+					</div>
+					<div class="our_expertise__row">
+						<div class="our_expertise__col">
+							<ul class="our_expertise__list">
+								@@loop("html/_our_expertise_item.html", [
+									{
+										"title": "Website Design",
+										"image": "1"
+									},
+									{
+										"title": "App Design",
+										"image": "2"
+									},
+									{
+										"title": "Website Development",
+										"image": "3"
+									},
+									{
+										"title": "Branding & Identity",
+										"image": "4"
+									},
+								])
+							</ul>
+						</div>
+						<div class="our_expertise__col visible-on-desktop">
+							<div class="our_expertise__images">
+								<a href="#prototypes-popup-1" class="our_expertise__images_item is-active-mouse open-popup">
+									<picture>
+										<source srcset="img/index/services/service-image-1.avif" type="image/avif">
+										<source srcset="img/index/services/service-image-1.webp" type="image/webp">
+										<img src="img/index/services/service-image-1.jpg" alt="" width="0" height="0" loading="lazy">
+									</picture>
+								</a>
+								<a href="#prototypes-popup-2" class="our_expertise__images_item is-active-mouse open-popup">
+									<picture>
+										<source srcset="img/index/services/service-image-2.avif" type="image/avif">
+										<source srcset="img/index/services/service-image-2.webp" type="image/webp">
+										<img src="img/index/services/service-image-2.jpg" alt="" width="0" height="0" loading="lazy">
+									</picture>
+								</a>
+								<a href="#prototypes-popup-3" class="our_expertise__images_item is-active-mouse open-popup">
+									<picture>
+										<source srcset="img/index/services/service-image-3.avif" type="image/avif">
+										<source srcset="img/index/services/service-image-3.webp" type="image/webp">
+										<img src="img/index/services/service-image-3.jpg" alt="" width="0" height="0" loading="lazy">
+									</picture>
+								</a>
+								<a href="#prototypes-popup-4" class="our_expertise__images_item is-active-mouse open-popup">
+									<picture>
+										<source srcset="img/index/services/service-image-4.avif" type="image/avif">
+										<source srcset="img/index/services/service-image-4.webp" type="image/webp">
+										<img src="img/index/services/service-image-4.jpg" alt="" width="0" height="0" loading="lazy">
+									</picture>
+								</a>
+							</div>
+						</div>
+					</div>
 				</div>
 			</section>
 		</div>

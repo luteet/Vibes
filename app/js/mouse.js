@@ -131,7 +131,7 @@ export default function customMouse() {
 
 	function magneticButtons() {
 
-		document.querySelectorAll(".magnetic_button, .button, .header__nav_list a").forEach(button => {
+		document.querySelectorAll(".magnetic_button, .header__nav_list a").forEach(button => {
 
 			let xTo = gsap.utils.pipe(
 				gsap.utils.clamp(-20, 20),

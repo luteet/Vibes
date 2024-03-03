@@ -36,7 +36,8 @@ export default function scrollAnimation(params) {
 			}
 		});
 
-		const heroScrollTimeline = gsap.timeline({
+		const heroScrollTimeline = gsap.timeline(/* {
+			
 			scrollTrigger: {
 				trigger: "#hero-scene",
 				start: "top top",
@@ -46,9 +47,21 @@ export default function scrollAnimation(params) {
 				pinSpacer: false,
 				pinSpacing: false,
 			}
-		});
-	
+		} */);
 		heroScrollTimeline.pause();
+
+		ScrollTrigger.create({
+			trigger: "#hero-scene",
+			start: "top top",
+			end: `+=${window.innerHeight*2} top`,
+			scrub: true,
+			pin: true,
+			pinSpacer: false,
+			pinSpacing: false,
+			animation: heroScrollTimeline
+		})
+	
+		
 		
 		heroScrollTimeline.to([heroTitle, loader, heroText], {
 			opacity: 0.2,
@@ -57,7 +70,7 @@ export default function scrollAnimation(params) {
 		
 		heroScrollTimeline.fromTo(decorElement[0], {
 			"--y": "0%",
-			"--x": "45%",
+			"--x": "35%",
 			"--scale": "1",
 		}, {
 			"--x": "80%",
@@ -67,8 +80,8 @@ export default function scrollAnimation(params) {
 		}, "-=1")
 		
 		heroScrollTimeline.fromTo(decorElement[1], {
-			"--y": "25%",
-			"--x": "-40%",
+			"--y": "10%",
+			"--x": "-45%",
 			"--scale": "1",
 		}, {
 			"--x": "-80%",
@@ -232,7 +245,7 @@ export default function scrollAnimation(params) {
 				start: "top top",
 				end: `+=${window.innerHeight} top`,
 				scrub: true,
-				pin: true,
+				//pin: true,
 			}
 		});
 		
@@ -240,8 +253,9 @@ export default function scrollAnimation(params) {
 	
 		const 
 		ourExpertiseTitle = document.querySelector(".our_expertise__title"),
-		//ourExpertiseImages = document.querySelector(".our_expertise__images"),
-		//ourExpertiseImagesItems = ourExpertiseImages.querySelectorAll(".our_expertise__images_item"),
+		ourExpertiseRow = document.querySelector(".our_expertise__row"),
+		ourExpertiseImages = document.querySelector(".our_expertise__images"),
+		ourExpertiseImagesItems = ourExpertiseImages.querySelectorAll(".our_expertise__images_item"),
 		ourExpertiseList = document.querySelector(".our_expertise__list"),
 		ourExpertiseItems = ourExpertiseList.querySelectorAll(".our_expertise__item");
 	
@@ -249,19 +263,64 @@ export default function scrollAnimation(params) {
 			opacity: 0,
 			duration: 2,
 		})
+
+		servicesScrollTimeline.to(ourExpertiseTitle, {
+			opacity: 0,
+			duration: 1,
+		})
 	
-		gsap.set(ourExpertiseList, {
+		/* gsap.set(ourExpertiseRow, {
 			transform: `translate3d(0,${window.innerHeight}px,0)`,
 		})
 	
-		servicesScrollTimeline.to(ourExpertiseList, {
+		servicesScrollTimeline.to(ourExpertiseRow, {
 			transform: "translate3d(0,0,0)",
 			duration: 2,
-		},"-=1")
+		},"-=1") */
+
+		ScrollTrigger.create({
+			trigger: ".our_expertise__hero",
+			start: "top top",
+			end: `=+${window.innerHeight} top`,
+			scrub: true,
+			pin: true,
+			pinSpacer: false,
+		})
+
+		ScrollTrigger.create({
+			trigger: ".our_expertise__images",
+			start: "top top",
+			end: `=+${ourExpertiseList.offsetHeight - window.innerHeight} top`,
+			scrub: true,
+			pin: true,
+			pinSpacer: false,
+		})
+
+		ourExpertiseItems.forEach((item, index) => {
+			ScrollTrigger.create({
+				trigger: item,
+				start: "top center",
+				end: `top center`,
+				onEnter: () => {
+					ourExpertiseImagesItems[index].classList.add("is-active");
+				},
+				onEnterBack: () => {
+					ourExpertiseImagesItems[Math.max(index-1, 0)].classList.add("is-active");
+					ourExpertiseImagesItems.forEach((image, subIndex) => {
+						if(subIndex >= index) {
+							image.classList.remove("is-active");
+						}
+					})
+					
+				},
+			})
+		})
 	
 		const 
 		pillSection = document.querySelector(".pill"),
 		pillSectionTitle = pillSection.querySelector(".pill__title"),
+		pillSectionTitleLine1 = pillSection.querySelectorAll(".pill__title.visible-on-desktop > *")[0],
+		pillSectionTitleLine2 = pillSection.querySelectorAll(".pill__title.visible-on-desktop > *")[1],
 		pillSectionDecor = pillSection.querySelector(".pill__decor"),
 		pillSectionDecorElements = pillSection.querySelectorAll(".pill__decor_item");
 
@@ -345,6 +404,30 @@ export default function scrollAnimation(params) {
 			transform: "translate3d(0,0,0) scale(1) rotate(0deg)",
 			duration: 0.2,
 		})
+
+		const feedbackScrollTimeline = gsap.timeline({
+			defaults: {
+				ease: "power1.inOut",
+			},
+			scrollTrigger: {
+				trigger: ".feedback",
+				start: `=-${window.innerHeight} top`,
+				end: `top top`,
+				scrub: true,
+			}
+		});
+		
+		feedbackScrollTimeline.pause();
+
+		feedbackScrollTimeline.to(pillSectionTitleLine1, {
+			transform: `translate3d(-${window.innerWidth}px,0,0)`,
+			duration: 2,
+		})
+	
+		feedbackScrollTimeline.to(pillSectionTitleLine2, {
+			transform: `translate3d(${window.innerWidth}px,0,0)`,
+			duration: 2,
+		},"-=2")
 	
 		gsap.set(html, {
 			'--background-color': "rgb(3,3,4)",
@@ -370,7 +453,7 @@ export default function scrollAnimation(params) {
 			}
 		});
 
-		const heroScrollTimeline = gsap.timeline({
+		const heroScrollTimeline = gsap.timeline(/* {
 			scrollTrigger: {
 				trigger: "#hero-scene",
 				start: "top top",
@@ -380,9 +463,20 @@ export default function scrollAnimation(params) {
 				pinSpacer: false,
 				//pinSpacing: false,
 			}
-		});
+		} */);
 	
 		heroScrollTimeline.pause();
+
+		ScrollTrigger.create({
+			trigger: "#hero-scene",
+			start: "top top",
+			end: `+=${window.innerHeight*2} top`,
+			scrub: true,
+			pin: true,
+			pinSpacer: false,
+			//pinSpacing: false,
+			animation: heroScrollTimeline,
+		})
 		
 		heroScrollTimeline.to([heroMobTitle, loader, heroText], {
 			opacity: 0.2,

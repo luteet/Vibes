@@ -17,6 +17,15 @@
 		}
 	}
 
+	&__hero {
+		@include _992 {
+			grid-column: 1/3; grid-row: 1;
+			align-self: self-start;
+			text-align: center;
+			min-height: 100vh;
+		}
+	}
+
 	// .our_expertise__title
 
 	&__title {
@@ -24,10 +33,7 @@
 		text-align: start;
 
 		@include _992 {
-			grid-column: 1/3; grid-row: 1;
-			align-self: self-start;
-			text-align: center;
-			min-height: 100vh;
+			min-height: 100%;
 
 			opacity: 1;
 
@@ -44,10 +50,10 @@
 		right: 0; top: 0; */
 
 		display: grid;
-		width: 50%; height: 100vh; height: 100svh;
+		width: 100%; height: 100vh; height: 100svh;
 		justify-self: end;
 
-		grid-column: 1/3; grid-row: 1;
+		//grid-column: 1/3; grid-row: 1;
 		align-self: self-start;
 
 		z-index: 2;
@@ -61,10 +67,20 @@
 
 	&__images_item {
 		grid-area: 1/1;
+		display: block;
 
 		width: 100%; 
 		position: relative;
 		align-self: center;
+
+		&:not(:first-child) {
+			opacity: 0; visibility: hidden;
+			transition: opacity .5s ease, visibility .5s ease;
+		}
+
+		&.is-active {
+			opacity: 1; visibility: visible;
+		}
 
 		@include _992 {
 			height: calc(100% - 2.4375rem * 2);
@@ -86,6 +102,43 @@
 		}
 	}
 
+	// .our_expertise__row
+
+	&__row {
+		grid-column: 1/3; grid-row: 1;
+
+		@include _992 {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+
+			padding-top: 100vh;
+		}
+
+		position: relative;
+		z-index: 2;
+	}
+
+	// .our_expertise__col
+
+	&__col {
+		position: relative;
+	}
+
+	// .our_expertise__list
+
+	&__list {
+	}
+
+	// .our_expertise__images
+
+	&__images {
+	}
+
+	// .our_expertise__images_item
+
+	&__images_item {
+	}
+
 	// .our_expertise__list
 
 	&__list {
@@ -95,11 +148,12 @@
 		width: 100%; height: 100%; */
 		width: 100%;
 		
-
 		padding-top: 1.5rem;
+
 		@include _992 {
 			padding-top: 0;
-			grid-column: 1/3; grid-row: 1;
+			//grid-column: 1/3; grid-row: 1;
+			padding-left: 2.5rem;
 		}
 
 		//display: none;
@@ -138,7 +192,7 @@
 
 		@include _992 {
 			display: grid;
-			grid-template-columns: 1fr 1fr;
+			grid-template-columns: 100%;
 			align-items: stretch;
 		}
 
@@ -146,7 +200,7 @@
 		
 		text-align: center;
 
-		color: var(--primary);
+		color: var(--theme-color-1);
 	}
 
 	&__item_image {
@@ -154,6 +208,8 @@
 		position: relative;
 		width: 100%; aspect-ratio: 343/260;
 		position: relative;
+
+		display: block;
 
 		@include _992 {
 			height: calc(100% - 2.4375rem * 2);
@@ -188,7 +244,7 @@
 
 		padding-top: 1.5rem;
 		display: block;
-		color: var(--primary);
+		color: var(--theme-color-1);
 		text-align: start;
 
 		@include _992 {
