@@ -74,6 +74,8 @@
 			//width: 100%;
 			width: 4.125rem; height: 1.25rem;
 			object-fit: contain;
+
+			transition: filter .3s ease;
 			
 		}
 	}
@@ -310,7 +312,7 @@
 			
 			transition-duration: .3s;
 			transition-timing-function: ease;
-			transition-property: transform, top, opacity, visibility;
+			transition-property: transform, top, opacity, visibility, background;
 	
 			&:nth-child(1) {
 				top: 50%;

@@ -49,6 +49,7 @@ export default function scrollAnimation(params) {
 			}
 		} */);
 		heroScrollTimeline.pause();
+		let heroSectionProgressCheck = true;
 
 		ScrollTrigger.create({
 			trigger: "#hero-scene",
@@ -58,7 +59,23 @@ export default function scrollAnimation(params) {
 			pin: true,
 			pinSpacer: false,
 			pinSpacing: false,
-			animation: heroScrollTimeline
+			animation: heroScrollTimeline,
+
+			onUpdate: (self) => {
+				
+				if(heroSectionProgressCheck && self.progress >= 0.7) {
+
+					heroSectionProgressCheck = false;
+					document.body.classList.add("is-light")
+					//document.body.classList.remove("is-light")
+
+				} else if(!heroSectionProgressCheck && self.progress <= 0.65) {
+
+					heroSectionProgressCheck = true;
+					document.body.classList.remove("is-light")
+
+				}
+			}
 		})
 	
 		
@@ -154,13 +171,13 @@ export default function scrollAnimation(params) {
 		ScrollTrigger.create({
 			trigger: cases,
 			start: "top top",
-			onEnter: (self) => {
+			/* onEnter: (self) => {
 				document.body.classList.add("is-light")
 			},
 
 			onLeaveBack: (self) => {
 				document.body.classList.remove("is-light")
-			},
+			}, */
 		});
 	
 		const casesScrollTimeline = gsap.timeline({
@@ -466,6 +483,7 @@ export default function scrollAnimation(params) {
 		} */);
 	
 		heroScrollTimeline.pause();
+		let heroSectionProgressCheck = true;
 
 		ScrollTrigger.create({
 			trigger: "#hero-scene",
@@ -476,6 +494,21 @@ export default function scrollAnimation(params) {
 			pinSpacer: false,
 			//pinSpacing: false,
 			animation: heroScrollTimeline,
+			onUpdate: (self) => {
+				
+				if(heroSectionProgressCheck && self.progress >= 0.7) {
+
+					heroSectionProgressCheck = false;
+					document.body.classList.add("is-light")
+					//document.body.classList.remove("is-light")
+
+				} else if(!heroSectionProgressCheck && self.progress <= 0.6) {
+
+					heroSectionProgressCheck = true;
+					document.body.classList.remove("is-light")
+
+				}
+			}
 		})
 		
 		heroScrollTimeline.to([heroMobTitle, loader, heroText], {
@@ -574,11 +607,11 @@ export default function scrollAnimation(params) {
 			trigger: cases,
 			start: "top top",
 			onEnter: (self) => {
-				document.body.classList.add("is-light")
+				//document.body.classList.add("is-light")
 			},
 
 			onLeaveBack: (self) => {
-				document.body.classList.remove("is-light")
+				//document.body.classList.remove("is-light")
 			},
 		});
 	
