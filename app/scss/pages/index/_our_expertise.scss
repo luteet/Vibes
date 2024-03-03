@@ -60,16 +60,17 @@
 
 		&_list {
 			display: grid;
+			//padding-left: 1rem;
 		}
 	}
 
 	// .our_expertise__images_item
 
 	&__images_item {
-		grid-area: 1/1;
+		grid-area: 1/1; justify-self: end;
 		display: block;
 
-		width: 100%; 
+		width: calc(100% - 1.75rem); 
 		position: relative;
 		align-self: center;
 
