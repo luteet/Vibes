@@ -68,8 +68,10 @@ body.addEventListener('click', function (event) {
 			element.removeAttribute("muted");
 			element.removeAttribute("loop");
 			element.currentTime = 0;
-			element.play();
-			element.dispatchEvent(playEvent)
+			setTimeout(() => {
+				element.play();
+				element.dispatchEvent(playEvent)
+			},0)
 
 			videoBlock.classList.add("is-playing");
 
