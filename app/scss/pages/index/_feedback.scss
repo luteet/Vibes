@@ -664,10 +664,36 @@
 		letter-spacing: -0.04em;
 		color: var(--white);
 
+		display: inline-grid;
+		overflow: hidden;
+
+		> * {
+			grid-area: 1/1;
+			transition: transform .3s ease, color .2s ease;
+
+			&:nth-child(2) {
+				transform: translate3d(0,100%,0);
+			}
+		}
+
 		@media (max-width: 991px) {
 			transition: color .2s ease;
 			&:active {
 				color: #6A6A74;
+			}
+		}
+
+		@media (any-hover: hover) {
+			&:hover {
+				> * {
+					&:nth-child(1) {
+						transform: translate3d(0,-100%,0);
+					}
+
+					&:nth-child(2) {
+						transform: translate3d(0,0,0);
+					}
+				}
 			}
 		}
 

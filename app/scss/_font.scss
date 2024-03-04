@@ -84,6 +84,12 @@
 			flex: 0 0 1ch; width: 1ch; margin: 0 0.15ch 0.1ch;
 		}
 	}
+
+	&.is-min-icon svg {
+		@include _992 {
+			flex: 0 0 1ch; width: 1ch; margin: 0 0.15ch 0ch;
+		}
+	}
 }
 
 .title {
