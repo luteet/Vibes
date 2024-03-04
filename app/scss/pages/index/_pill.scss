@@ -57,8 +57,7 @@
 			transform: translate3d(-99.5%,-50%,0);
 			width: calc(50vw - 1rem); height: auto;
 			@include _992 {
-				width: 25%;
-				transform: translate3d(-99.5%,-50%,0);
+				width: 25vw;
 			}
 		}
 
@@ -66,7 +65,7 @@
 			transform: translate3d(-0.5%,-50%,0);
 			width: calc(50vw - 1rem); height: auto;
 			@include _992 {
-				width: 25%;
+				width: 25vw;
 			}
 		}
 	}

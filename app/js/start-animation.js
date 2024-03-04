@@ -441,7 +441,7 @@ export default function startAnimation(params) {
 						})
 					})
 	
-					scrollAnimation();
+					scrollAnimation({loader});
 					//customMouse();
 	
 				}, 0)

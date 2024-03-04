@@ -660,7 +660,7 @@
 		font-family: "Manrope", sans-serif;
 		font-weight: 500;
 		font-size: 1.5625rem;
-		line-height: 125%;
+		line-height: 135%;
 		letter-spacing: -0.04em;
 		color: var(--white);
 
@@ -672,7 +672,7 @@
 			transition: transform .3s ease, color .2s ease;
 
 			&:nth-child(2) {
-				transform: translate3d(0,100%,0);
+				transform: translate3d(0,150%,0);
 			}
 		}
 
@@ -687,7 +687,7 @@
 			&:hover {
 				> * {
 					&:nth-child(1) {
-						transform: translate3d(0,-100%,0);
+						transform: translate3d(0,-150%,0);
 					}
 
 					&:nth-child(2) {
