@@ -43,6 +43,7 @@
 
 			@include _992 {
 				width: 20.4375rem; max-width: none;
+				top: 0;
 			}
 
 			img {
@@ -63,7 +64,7 @@
 			}
 
 			@include _992 {
-				width: 25rem; max-width: none;
+				width: 24.5rem; max-width: none;
 				top: calc(var(--svh,1vh) * 50); top: 50svh;
 				bottom: auto;
 			}
