@@ -37,6 +37,14 @@ export default function Popup(arg) {
 					setTimeout(() => {
 						if (!initStart) {
 							popup.classList.add('is-active');
+							setTimeout(() => {
+								if(popup.classList.contains("prototypes")) {
+									const navList = popup.querySelectorAll(".prototypes__nav_list");
+									navList.forEach(navList => {
+										navList.closest(".prototypes__container_inner").style.setProperty("--video-y", navList.getBoundingClientRect().bottom + "px");
+									})
+								}
+							},200)
 							setTimeout(() => popupCheck = true, 1000)
 						} else {
 							popup.classList.add('is-transition-none');
@@ -110,6 +118,44 @@ export default function Popup(arg) {
 
 		init: function () {
 
+			let sliderArray = [];
+			document.querySelectorAll('.prototypes__slider').forEach(sliderElement => {
+
+				const slider = new Splide(sliderElement, {
+			
+					type: "fade",
+					perPage: 1,
+					speed: 700,
+					easing: "ease",
+					pagination: false,
+			
+				});
+			
+				const title = sliderElement.querySelector(".prototypes__title"),
+				titleElements = title.querySelectorAll(".prototypes__title_slide"),
+				count = sliderElement.querySelector(".prototypes__count"),
+				lengthSlides = (sliderElement.querySelectorAll(".splide__slide").length >= 10) ? sliderElement.querySelectorAll(".splide__slide").length : `0${sliderElement.querySelectorAll(".splide__slide").length}`;
+			
+				slider.on("move", () => {
+			
+					titleElements.forEach(titleElement => {
+						titleElement.classList.remove("is-active");
+					})
+			
+					titleElements[slider.index].classList.add("is-active")
+			
+					const currentIndex = (slider.index+1 >= 10) ? slider.index+1 : `0${slider.index+1}`;
+					
+					count.textContent = `${currentIndex}/${lengthSlides}`;
+			
+				})
+			
+				slider.mount();
+
+				sliderArray.push(slider);
+			
+			})
+
 			let thisTarget
 			body.addEventListener('click', function (event) {
 
@@ -118,6 +164,11 @@ export default function Popup(arg) {
 				let popupOpen = thisTarget.closest('.open-popup');
 				if (popupOpen) {
 					event.preventDefault();
+					if(popupOpen.dataset.prototypeIndex) {
+						sliderArray.map(slider => {
+							slider.go(Number(popupOpen.dataset.prototypeIndex)-1);
+						})
+					}
 					open(popupOpen.getAttribute('href'))
 				}
 

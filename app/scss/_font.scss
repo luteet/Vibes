@@ -34,14 +34,23 @@
 
 	font-family: var(--title-font);
 	
-	font-size: 3.125rem; // 50px
+	font-size: 2.75rem; // 44px
 	line-height: 105%;
 	letter-spacing: -0.04em;
 	font-weight: 300;
 
+	@media (min-width: 360px) {
+		font-size: 3.125rem; // 50px
+	}
+
 	&.is-large {
 
 		font-size: 2.75rem; // 44px
+
+		@media (min-width: 360px) {
+			font-size: 2.75rem; // 44px
+		}
+
 		svg {
 			flex: 0 0 1ch; width: 1ch; height: auto;
 			translate: 0 0.125rem;
@@ -58,24 +67,37 @@
 		@include _992 {
 			line-height: 100%;
 			font-size: 9.375rem; // 150px
+			.symbol {
+				font-size: 4.375rem; // 70px
+			}
 		}
 	}
 
 	&.is-min {
-		font-size: 2.5rem; // 150px
+
+		font-size: 2.5rem; // 40px
+
+		@media (min-width: 360px) {
+			font-size: 2.5rem; // 40px
+		}
+
 		@include _550 {
 			font-size: 4rem; // 64px
 		}
 
 		@include _992 {
 			font-size: 6.5625rem; // 105px
+			.symbol {
+				font-size: 4.375rem; // 70px
+			}
 		}
-
-		
 	}
 	
 	@include _992 {
 		font-size: 6.5625rem; // 105px
+		.symbol {
+			font-size: 4.375rem; // 70px
+		}
 	}
 
 	svg {
@@ -84,6 +106,7 @@
 			flex: 0 0 1ch; width: 1ch; margin: 0 0.15ch 0.1ch;
 		}
 	}
+	
 
 	&.is-min-icon svg {
 		@include _992 {

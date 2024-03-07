@@ -64,7 +64,7 @@ html {
 } */
 
 #cases-scene {
-	margin-top: -50vh;
+	margin-top: 0vh;
 }
 
 @include _992 {
@@ -113,6 +113,8 @@ body {
 		--container-padding: 2.5rem;
 		min-height: 100%;
 		height: auto;
+
+		overflow: hidden;
 	}
 
 	&:not(.is-loaded) {
@@ -123,6 +125,13 @@ body {
 		overflow: hidden;
 	}
 
+}
+
+@include _992 {
+	.body_wrapper {
+		height: 100vh;
+		overflow-y: hidden scroll;
+	}
 }
 
 body.is-popup-active .header {
@@ -189,6 +198,8 @@ section {
 	.pin-spacer:first-child {
 		z-index: 2 !important;
 	}
+
+	cursor: none;
 }
 
 section {
@@ -223,6 +234,10 @@ section {
 
 	border-radius: 3.125rem;
 	overflow: hidden;
+
+	&.is-min {
+		padding: 0.675rem 1.25rem;
+	}
 
 	svg {
 		flex: 0 0 1.25rem; width: 1.25rem; height: auto;
@@ -268,6 +283,8 @@ section {
 		}
 	}
 
+	
+
 	@media (any-hover: hover) {
 
 		&:not(.magnetic_button) {
@@ -280,6 +297,13 @@ section {
 
 		&:hover {
 			//transform: scale3d(0.9,0.9,0.5);
+			&::before {
+				content: '';
+				position: absolute;
+				left: 50%; top: 50%;
+				transform: translate(-50%,-50%);
+				width: 150%; height: 150%;
+			}
 			
 			span:nth-child(1) {
 				transform: translate3d(0,-300%,0);
@@ -328,6 +352,7 @@ section {
 	font-size: 0.75rem;
 	line-height: 116.666667%;
 	text-transform: uppercase;
+	font-weight: 500;
 
 	padding: 0.35rem 0.625rem;
 
@@ -343,7 +368,7 @@ section {
 
 .custom_cursor {
 	position: fixed;
-	left: 50%; top: -6.25rem;
+	left: 50%; top: 50%;
 	
 	width: 7.5rem; height: 7.5rem;
 	transform: translate3d(-50%,-50%,0) scale(0.1);
@@ -394,6 +419,10 @@ section {
 	transition: transform .3s ease, color .3s ease;
 	@media (any-hover: hover) {
 		display: grid;
+	}
+
+	&.is-start {
+		transform: translate3d(-50%,-50%,0) scale(0);
 	}
 
 	&.is-hidden {
@@ -483,4 +512,47 @@ section {
 
 .pause_cursor {
 	clip-path: url(#pause-icon);
+}
+
+.simplebar-track {
+	mix-blend-mode: difference;
+}
+
+.simplebar-scrollbar.simplebar-visible::before {
+	opacity: 1;
+}
+
+.simplebar-scrollbar::before {
+	left: 0; top: 0; right: auto; bottom: auto;
+	border-radius: 0.625rem;
+	width: 0.375rem; height: 100%;
+}
+
+@media (any-hover: hover) {
+	.simplebar-scrollbar.simplebar-hover::before {
+		background: #A0A0A0;
+		width: 0.5625rem;
+	}
+}
+
+.simplebar-track.simplebar-vertical {
+	width: 0.6875rem;
+}
+
+.simplebar-scrollbar.simplebar-visible::before {
+	transition: background .4s ease, width .4s ease, opacity .2s ease;
+}
+
+.simplebar-scrollbar::before {
+	background: #3D3D3D;
+	//background: red;
+	transition: background .2s ease, width .2s ease, opacity .2s ease;
+}
+
+.splide__arrow--prev svg {
+	transform: none;
+}
+
+.splide__arrow:focus-visible {
+	outline: none;
 }

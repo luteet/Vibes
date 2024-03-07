@@ -23,19 +23,24 @@
 	// .statistic__list
 
 	&__list {
-		display: flex;
-		justify-content: space-between;
-		flex-direction: column;
-		align-items: center;
-		gap: 3.75rem;
+		
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		
+		gap: 2.5rem 2.25rem;
 
 		@include _992 {
-			flex-direction: row;
+			display: flex;
 			align-items: stretch;
+			justify-content: space-between;
 			gap: 0;
+
+			padding: 0;
 		}
 
-		max-width: 46.625rem; width: 100%;
+		padding: 0 1.0625rem;
+
+		max-width: 48.75rem; width: 100%;
 	}
 
 	// .statistic__item
@@ -44,13 +49,20 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+
+		justify-self: center;
+		@include _992 {
+			justify-self: stretch;
+		}
+
+		text-align: center;
 	}
 
 	// .statistic__item_value
 
 	&__item_value {
 		font-family: var(--title-font);
-		font-size: 5rem; // 105px
+		font-size: 5rem; // 80px
 		line-height: 105%;
 		letter-spacing: -0.04em;
 		font-weight: 300;

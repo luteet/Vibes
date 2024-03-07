@@ -1,6 +1,9 @@
 .anim_title {
 
-	min-height: 100vh;
+	padding-top: 9.375rem; padding-bottom: 5rem;
+	@include _992 {
+		min-height: 100vh;
+	}
 
 	display: flex;
 	flex-direction: column;

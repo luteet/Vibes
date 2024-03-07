@@ -1,7 +1,7 @@
 /* import changeTheme from "./change-theme.js";
 import sectionCases from "./section-cases.js" */
 import customMouse from "./mouse.js?v=2"
-import scrollAnimation from "./scroll-animation.js?v=2"
+import scrollAnimation from "./scroll-animation.js?v=3"
 
 export default function startAnimation(params) {
 
@@ -75,7 +75,8 @@ export default function startAnimation(params) {
 	history.scrollRestoration = "manual";
 
 	gsap.registerPlugin(ScrollTrigger);
-	ScrollTrigger.config({ ignoreMobileResize: true})
+	ScrollTrigger.config({ ignoreMobileResize: true })
+	
 	
 	const initTimeline = gsap.timeline({
 		duration: 2,
@@ -87,17 +88,29 @@ export default function startAnimation(params) {
 	let mm = gsap.matchMedia();
 	mm.add("(min-width: 992px)", () => {
 
-		let lenis = new Lenis({
-			wrapper: window,
-			container: document.body
-		})
+		history.scrollRestoration = "manual";
+
+		const bodyWrapper = document.querySelector(".body_wrapper");
+		//bodyWrapper.scroll({left: 0, top: 0});
+
+		new SimpleBar(bodyWrapper);
+
+		const bodyContentWrapper = document.querySelector(".simplebar-content-wrapper");
+		bodyContentWrapper.scrollTop = 0;
+		bodyContentWrapper.style.overflow = "hidden";
 	
-		function raf(time) {
-			lenis.raf(time)
-			requestAnimationFrame(raf)
-		}
+		let lenis;
+
+		setTimeout(() => {
+			/* bodyContentWrapper.scrollTop = 0;
+			bodyContentWrapper.style.overflow = "hidden scroll"; */
+			lenis = new Lenis({
+				wrapper: document.querySelector(".simplebar-content-wrapper"),
+				content: document.querySelector(".simplebar-content")
+			})
 	
-		lenis.stop();
+			//lenis.stop();
+		},500)
 	
 		document.querySelectorAll('.split-lines').forEach(splitText => {
 			let typeSplit = new SplitType(splitText, {
@@ -148,7 +161,10 @@ export default function startAnimation(params) {
 	
 			duration: 2,
 			ease: "power2.inOut",
-			onStart: () => params.header.classList.add("is-loaded")
+			onStart: () => {
+				params.header.classList.add("is-loaded")
+				
+			}
 		}, "-=1")
 	
 		initTimeline.to(decorElement[0], {
@@ -183,19 +199,31 @@ export default function startAnimation(params) {
 			onComplete: () => {
 	
 				setTimeout(() => {
-	
+
 					lenis.destroy();
 					lenis = new Lenis({
-						wrapper: window,
-						container: document.body
-					});
+						wrapper: document.querySelector(".simplebar-content-wrapper"),
+						content: document.querySelector(".simplebar-content")
+					})
+				
+					function raf(time) {
+						lenis.raf(time)
+						requestAnimationFrame(raf)
+					}
+			
+					requestAnimationFrame(raf)
+					//lenis.destroy();
+					/* lenis = new Lenis({
+						wrapper: document.querySelector("#root"),
+						container: document.querySelector("#root")
+					}); */
 
 					/* let subLenis = new Lenis({
 						wrapper: document.querySelector("#feedback-form"),
 						container: document.querySelector("#feedback-form")
 					}); */
 				
-					requestAnimationFrame(raf)
+					//requestAnimationFrame(raf)
 				
 					lenis.on('scroll', (event) => {
 						ScrollTrigger.update();
@@ -213,10 +241,22 @@ export default function startAnimation(params) {
 					html.style.setProperty("--load-padding", 0 + "px");
 	
 					document.querySelectorAll(".prototypes__container").forEach(container => {
+
+						const simplebar = new SimpleBar(container),
+						inner = container.querySelector(".prototypes__container_inner");
+
+						const scroller = container.querySelector(".simplebar-content-wrapper");
 	
 						let containerLenis = new Lenis({
-							wrapper: container,//container.closest(".popup"),
-							content: container,
+							wrapper: scroller,//container.closest(".popup"),
+							content: scroller,
+						})
+
+						const navList = container.querySelector(".prototypes__nav_list");
+						inner.style.setProperty("--video-y", navList.getBoundingClientRect().bottom + "px");
+
+						containerLenis.on("scroll", function(event) {
+							inner.style.setProperty("--video-y", navList.getBoundingClientRect().bottom + "px");
 						})
 	
 						const blocks = container.querySelectorAll(".prototypes__block"),
@@ -229,16 +269,38 @@ export default function startAnimation(params) {
 								containerLenis.scrollTo(container.querySelector(link.getAttribute("href")));
 							})
 						})
+
+						/* blocks.forEach((block, index) => {
+							ScrollTrigger.create({
+								trigger: block,
+								start: "top top",
+								end: "bottom top",
+								markers: true,
+								scroller: scroller,
+								onUpdate: (self) => {
+									console.log(self)
+								}
+							})
+						}) */
 	
 						containerLenis.on("scroll", (event) => {
 	
 							blocks.forEach((block, index) => {
-						
-								if(block.getBoundingClientRect().top > 0 && block.getBoundingClientRect().top < window.innerHeight / 4 && !navLinks[index].classList.contains("is-active")) {
-									blocks.forEach(block => block.classList.remove("is-active"))
+
+								/* if(index == 0) console.log(block.getBoundingClientRect().top);
+								if(block.getBoundingClientRect().top >= 0 && !block.classList.contains("is-active")) {
+
+								} */
+								
+								if(window.innerHeight - block.getBoundingClientRect().bottom >= 0 && !block.classList.contains("is-active")) {
 									block.classList.add("is-active");
 									navLinks.forEach(button => button.classList.remove("is-active"));
 									navLinks[index].classList.add("is-active");
+
+								} else if(window.innerHeight - block.getBoundingClientRect().bottom < 0 && block.classList.contains("is-active")) {
+									block.classList.remove("is-active");
+									navLinks[index].classList.remove("is-active");
+									navLinks[Math.max(0, index-1)].classList.add("is-active");
 								}
 					
 							})
@@ -268,7 +330,7 @@ export default function startAnimation(params) {
 						})
 					})
 	
-					scrollAnimation({lenis});
+					scrollAnimation();
 					customMouse();
 	
 				}, 0)
@@ -282,12 +344,12 @@ export default function startAnimation(params) {
 
 		gsap.set(loader, {
 			"--background-1": "235deg",
-			"--background-2": "290deg",
+			"--background-2": "90deg",
 			"--opacity": "0",
 		})
 
 		loaderTimeline.to(loader, {
-			"--background-1": "90deg",
+			"--background-1": "120deg",
 			ease: "linear",
 			duration: 1,
 			onComplete: () => {
@@ -307,8 +369,8 @@ export default function startAnimation(params) {
 			document.body.classList.add("is-init");
 	
 			loaderTimeline.to(loader, {
-				"--background-2": "465deg",
-				duration: 1,
+				"--background-2": "-90deg",
+				duration: 1.2,
 				onComplete: () => {
 					initTimeline.resume();
 				}
@@ -318,14 +380,20 @@ export default function startAnimation(params) {
 				loaderTimeline.resume()
 			},500)
 	
-			gsap.to(params.header, {
+			gsap.fromTo(params.header, {
 
-				transform: "translate3d(0,0,0)",
+				"--y": "-100%",
 		
 				duration: 2,
 				delay: 2,
 				ease: "power2.inOut",
 	
+			}, {
+				"--y": "0%",
+		
+				duration: 2,
+				delay: 2,
+				ease: "power2.inOut",
 			})
 			
 			
@@ -384,8 +452,8 @@ export default function startAnimation(params) {
 	
 		initTimeline.to(decorElement[0], {
 
-			"--y": `${vh(10)}px`,
-			"--x": "5vw",
+			"--y": `${vh(11.5)}px`,
+			"--x": "1vw",
 			
 			duration: 2,
 			ease: "power2.inOut",
@@ -395,7 +463,7 @@ export default function startAnimation(params) {
 		initTimeline.to(decorElement[1], {
 
 			"--y": "0vh",
-			"--x": "0vw",
+			"--x": "-0.5rem",
 			
 			duration: 2,
 			ease: "power2.inOut",
@@ -454,12 +522,12 @@ export default function startAnimation(params) {
 
 		gsap.set(loader, {
 			"--background-1": "235deg",
-			"--background-2": "270deg",
+			"--background-2": "90deg",
 			"--opacity": "0",
 		})
 
 		loaderTimeline.to(loader, {
-			"--background-1": "90deg",
+			"--background-1": "120deg",
 			ease: "linear",
 			duration: 1,
 			onComplete: () => {
@@ -479,8 +547,8 @@ export default function startAnimation(params) {
 			document.body.classList.add("is-init");
 
 			loaderTimeline.to(loader, {
-				"--background-2": "465deg",
-				duration: 1.5,
+				"--background-2": "-90deg",
+				duration: 1.2,
 				ease: "linear",
 				onComplete: () => {
 					initTimeline.resume();
@@ -512,7 +580,5 @@ export default function startAnimation(params) {
 
 		
 	})
-	
-	
 	
 }

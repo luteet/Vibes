@@ -40,8 +40,12 @@ export default function customMouse() {
 			gsap.set(".cursor-outline, .cursor-dot", { opacity: 1 });
 			isVisible = true;
 		} */
+
+		if(customCursor.classList.contains("is-start")) {
+			setTimeout(() => customCursor.classList.remove("is-start"), 200)
+		}
 		
-		if(getDeviceType() == "desktop") {
+		if(device == "desktop") {
 
 			const cursorPosition = {
 				left: event.clientX,
@@ -84,7 +88,7 @@ export default function customMouse() {
 		})
 	})
 
-	document.querySelectorAll(".prototypes__wrapper").forEach(activeMouseElement => {
+	document.querySelectorAll(".prototypes__container, .prototypes__bg").forEach(activeMouseElement => {
 		activeMouseElement.addEventListener("mouseenter", () => {
 			if(device == "desktop") customCursor.classList.add("is-close-mode")
 		})
@@ -134,19 +138,19 @@ export default function customMouse() {
 		document.querySelectorAll(".magnetic_button, .header__nav_list a").forEach(button => {
 
 			let xTo = gsap.utils.pipe(
-				gsap.utils.clamp(-20, 20),
-				gsap.utils.snap(5),
-				gsap.quickTo(button, "x", {duration: 1, ease: "elastic.out(1, 0.5)"})
+				gsap.utils.clamp(-30, 30),
+				gsap.utils.snap(2),
+				gsap.quickTo(button, "x", {duration: 0.5, ease: "power3"}),
 			);
 
 			let yTo = gsap.utils.pipe(
-				gsap.utils.clamp(-20, 20),
-				gsap.utils.snap(5),
-				gsap.quickTo(button, "y", {duration: 1, ease: "elastic.out(1, 0.5)"})
+				gsap.utils.clamp(-30, 30),
+				gsap.utils.snap(2),
+				gsap.quickTo(button, "y", {duration: 0.5, ease: "power3"}),
 			);
 
 			const mouseMove = (event) => {
-				if(device == "desktop") {
+				if(device == "desktop" && !button.disabled) {
 					const { clientX, clientY } = event;
 					const {height, width, left, top} = button.getBoundingClientRect();
 					const x = clientX - (left + width/2)
@@ -158,8 +162,8 @@ export default function customMouse() {
 
 			const mouseLeave = (e) => {
 				if(device == "desktop") {
-					gsap.to(button, {x: 0, duration: 0.5})
-					gsap.to(button, {y: 0, duration: 0.5})
+					gsap.to(button, {x: 0, duration: 0.7, ease: "elastic.out(1, 0.3)"})
+					gsap.to(button, {y: 0, duration: 0.7, ease: "elastic.out(1, 0.3)"})
 					xTo(0)
 					yTo(0)
 				}

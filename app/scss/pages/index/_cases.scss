@@ -21,7 +21,7 @@
 		
 		@include _992 {
 			flex-direction: row;
-			gap: 1rem;
+			gap: 0.625rem;
 
 			padding-right: var(--container-padding);
 		}
@@ -60,7 +60,7 @@
 
 	&__text {
 
-		padding-bottom: 2rem; padding-top: 0.5rem;
+		padding-bottom: 0.875rem; padding-top: 0.5rem;
 
 		@include _992 {
 			padding-top: 0; padding-bottom: 0;
@@ -84,9 +84,9 @@
 		margin: 0.625rem 0 0;
 
 		@include _992 {
-			margin: 1rem 0;
-			flex: 0 0 calc(100vw - var(--container-padding) * 2);
-			width: calc(100vw - var(--container-padding) * 2);
+			margin: 0.625rem 0;
+			flex: 0 0 calc(100vw - var(--container-padding) * 1.5);
+			width: calc(100vw - var(--container-padding) * 1.5);
 			min-height: 100%;
 		}
 	}
@@ -103,17 +103,18 @@
 		flex-direction: column;
 		justify-content: space-between;
 
-		min-height: calc(var(--svh,1vh) * 100);
-		min-height: 100svh;
+		min-height: min(144vw, 40rem);
 
 		overflow: hidden;
+
+		cursor: none;
 
 		@include _992 {
 
 			padding: 2.5rem;
 
-			min-height: max(100%, calc(var(--vh,1vh) * 100 - 2rem));
-			min-height: max(100%, calc(100svh - 2rem));
+			min-height: max(100%, calc(var(--vh,1vh) * 100 - 1.25rem));
+			min-height: max(100%, calc(100svh - 1.25rem));
 		}
 		//aspect-ratio: 1380/760;
 	}
@@ -143,7 +144,7 @@
 
 	&__card_header {
 		position: relative;
-		z-index: 2;
+		z-index: 1;
 
 		display: flex;
 		align-items: center;
@@ -192,16 +193,15 @@
 
 	&__card_title {
 
-		font-family: "Manrope", sans-serif;
-		font-weight: 500;
+		//font-family: "Manrope", sans-serif;
+		font-family: var(--title-font);
+		font-weight: 400;
 		font-size: 2rem;
 		line-height: 118.75%;
 		letter-spacing: -0.04em;
 		
 		@include _992 {
 			font-size: 3.125rem;
-			font-family: var(--title-font);
-			font-weight: 400;
 			line-height: 110%;
 		}
 	}
@@ -215,6 +215,7 @@
 
 		font-size: 0.9375rem;
 		font-weight: 500;
+		letter-spacing: -0.05em;
 
 		@include _992 {
 			font-size: 1rem;
@@ -233,7 +234,7 @@
 			padding-top: 0;
 			width: calc(40vw + (var(--container-padding) * 2) - var(--container-padding) * 2);
 			flex: 0 0 calc(40vw + (var(--container-padding) * 2) - var(--container-padding) * 2);
-			padding-right: calc(var(--container-padding) / 2);
+			padding-right: 0.625rem;
 		}
 	}
 
@@ -248,8 +249,8 @@
 
 		@include _992 {
 			padding: 2.5rem;
-			margin: 1rem 0;
-			min-height: calc(100% - 2rem);
+			margin: 0.625rem 0;
+			min-height: calc(100% - 1.25rem);
 		}
 		
 	}

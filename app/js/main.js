@@ -1,6 +1,6 @@
 import Popup from "./popup.js";
 import form from "./form.js";
-import startAnimation from "./start-animation.js?v=6"
+import startAnimation from "./start-animation.js?v=7"
 
 const 
 	body = document.querySelector('body'),
@@ -178,7 +178,6 @@ document.querySelectorAll(".video_block").forEach(block => {
 })
 
 // =-=-=-=-=-=-=-=-=-=-=-=- </video> -=-=-=-=-=-=-=-=-=-=-=-=
-
 
 startAnimation({
 	header, menu

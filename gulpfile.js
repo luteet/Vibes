@@ -92,7 +92,7 @@ function images() {
 
 function scriptsLib() {
 	return src([
-		//'node_modules/@splidejs/splide/dist/js/splide.min.js', // Слайдер | npm i @splidejs/splide --save | https://splidejs.com/guides/getting-started/
+		'node_modules/@splidejs/splide/dist/js/splide.min.js', // Слайдер | npm i @splidejs/splide --save | https://splidejs.com/guides/getting-started/
 		//'node_modules/@splidejs/splide-extension-auto-scroll/dist/js/splide-extension-auto-scroll.min.js', // autoscroll для слайдера | $ npm install @splidejs/splide-extension-auto-scroll --save | https://splidejs.com/guides/getting-started/
 		//'node_modules/@splidejs/splide-extension-grid/dist/js/splide-extension-grid.min.js', // Сетка для слайдера | npm install @splidejs/splide-extension-grid --save | https://splidejs.com/guides/getting-started/
 		//'node_modules/vanilla-lazyload/dist/lazyload.min.js', // Lazyload img | npm i vanilla-lazyload --save | https://www.npmjs.com/package/vanilla-lazyload
@@ -109,7 +109,7 @@ function scriptsLib() {
 		//'node_modules/slim-select/dist/slimselect.min.js', // Select | npm i slim-select --save | https://www.npmjs.com/package/slim-select
 		//'node_modules/sticky-js/dist/sticky.min.js' // Sticky | npm i sticky-js --save | https://www.npmjs.com/package/sticky-js
 		//'node_modules/nouislider/dist/nouislider.min.js', // Кастомный input[range] | npm i nouislider --save | https://www.npmjs.com/package/nouislider
-		//'node_modules/simplebar/dist/simplebar.min.js', // Кастомный скролбар | npm i simplebar --save | https://www.npmjs.com/package/simplebar
+		'node_modules/simplebar/dist/simplebar.min.js', // Кастомный скролбар | npm i simplebar --save | https://www.npmjs.com/package/simplebar
 		//'node_modules/fslightbox/index.js', // Галерея | npm i fslightbox --save | https://www.npmjs.com/package/fslightbox
 		//'node_modules/chart.js/dist/chart.min.js', // График | npm i chart.js --save | https://www.npmjs.com/package/chart.js
 		//'node_modules/vanillajs-datepicker/dist/js/datepicker.min.js', // Выбор даты | npm install --save vanillajs-datepicker | https://mymth.github.io/vanillajs-datepicker/#/
@@ -171,13 +171,13 @@ function styles() {
 function stylesLib() {
 	return src([
 		'node_modules/normalize.css/normalize.css',
-		//'node_modules/@splidejs/splide/dist/css/splide.min.css', // Слайдер
+		'node_modules/@splidejs/splide/dist/css/splide.min.css', // Слайдер
 		//'node_modules/@splidejs/splide/dist/css/splide-core.min.css', // Слайдер
 		//'node_modules/swiper/swiper-bundle.min.css', // Слайдер
 		//'node_modules/slim-select/dist/slimselect.css', // Select
 		//'node_modules/aos/dist/aos.css', // Анимация
 		//'node_modules/nouislider/dist/nouislider.css', // Кастомный input[range]
-		//'node_modules/simplebar/dist/simplebar.min.css', // Кастомный скролбар
+		'node_modules/simplebar/dist/simplebar.min.css', // Кастомный скролбар
 	])
 	.pipe(concat('_libs.scss'))
 	.pipe(dest('app/scss'))

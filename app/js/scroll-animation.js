@@ -30,6 +30,8 @@ export default function scrollAnimation(params) {
 	const cases = document.querySelector(".cases"), 
 	casesInner = document.querySelector(".cases__inner");
 
+	const scrollBlock = document.querySelector(".simplebar-content-wrapper");
+
 	let mm = gsap.matchMedia();
 
 	mm.add("(min-width: 992px)", () => {
@@ -41,8 +43,12 @@ export default function scrollAnimation(params) {
 		pillScrollTimeline = gsap.timeline(),
 		feedbackScrollTimeline = gsap.timeline();
 
+		gsap.set(".header", {
+			"--y": "0%",
+		})
+
 		const showAnim = gsap.from('.header', { 
-			transform: "translate3d(0,-100%,0)",
+			"--y": "-100%",
 			paused: true,
 			duration: 0.1
 		}).progress(1);
@@ -51,10 +57,14 @@ export default function scrollAnimation(params) {
 			if(window.innerWidth >= 992) {
 
 				ScrollTrigger.killAll();
+				gsap.set(".header", {
+					transform: "translate3d(0,0,0)",
+				})
 				
 				ScrollTrigger.create({
 					start: "top top",
 					end: "max",
+					scroller: scrollBlock,
 					onUpdate: (self) => {
 						self.direction === -1 ? showAnim.play() : showAnim.reverse()
 						self.progress == 0 ? header.classList.add("on-top") : header.classList.remove("on-top")
@@ -69,6 +79,7 @@ export default function scrollAnimation(params) {
 				let heroSectionProgressCheck = true;
 		
 				ScrollTrigger.create({
+
 					trigger: "#hero-scene",
 					start: "top top",
 					end: `+=${window.innerHeight*2} top`,
@@ -77,6 +88,8 @@ export default function scrollAnimation(params) {
 					pinSpacer: false,
 					pinSpacing: false,
 					animation: heroScrollTimeline,
+					//markers: true,
+					scroller: scrollBlock,
 		
 					onUpdate: (self) => {
 						
@@ -96,7 +109,7 @@ export default function scrollAnimation(params) {
 				})	
 				
 				heroScrollTimeline.to([heroTitle, loader, heroText], {
-					opacity: 0.2,
+					opacity: 0.1,
 					duration: 2,
 				})
 				
@@ -171,6 +184,8 @@ export default function scrollAnimation(params) {
 					'--background-color': "rgb(3,3,4)",
 					'--theme-color-1': 'rgb(245,248,255)',
 					'--theme-color-1-reverse': 'rgb(3,3,4)',
+					'--theme-color-2': 'rgb(255,255,255)',
+					'--theme-color-2-reverse': 'rgb(0,0,0)',
 					duration: 3,
 					ease: "power2.inOut",
 				}, 
@@ -180,12 +195,15 @@ export default function scrollAnimation(params) {
 					'--background-color': "rgb(245,248,255)",
 					'--theme-color-1': 'rgb(3,3,4)',
 					'--theme-color-1-reverse': 'rgb(245,248,255)',
+					'--theme-color-2': 'rgb(0,0,0)',
+					'--theme-color-2-reverse': 'rgb(255,255,255)',
 				},
 				"-=4")
 		
 				ScrollTrigger.create({
 					trigger: cases,
 					start: "top top",
+					scroller: scrollBlock,
 				});
 			
 				casesScrollTimeline.kill();
@@ -197,6 +215,7 @@ export default function scrollAnimation(params) {
 						scrub: true,
 						pin: true,
 						pinSpacing: true,
+						scroller: scrollBlock,
 					}
 				});
 			
@@ -228,6 +247,7 @@ export default function scrollAnimation(params) {
 						start: `top bottom`,
 						end: `bottom top`,
 						scrub: true,
+						scroller: scrollBlock,
 					}
 				});
 			
@@ -273,6 +293,7 @@ export default function scrollAnimation(params) {
 						start: "top top",
 						end: `+=${window.innerHeight} top`,
 						scrub: true,
+						scroller: scrollBlock,
 						//pin: true,
 					}
 				});
@@ -303,6 +324,7 @@ export default function scrollAnimation(params) {
 					scrub: true,
 					pin: true,
 					pinSpacer: false,
+					scroller: scrollBlock,
 				})
 		
 				ScrollTrigger.create({
@@ -312,6 +334,7 @@ export default function scrollAnimation(params) {
 					scrub: true,
 					pin: true,
 					pinSpacer: false,
+					scroller: scrollBlock,
 				})
 		
 				ourExpertiseItems.forEach((item, index) => {
@@ -319,16 +342,23 @@ export default function scrollAnimation(params) {
 						trigger: item,
 						start: "top center",
 						end: `top center`,
+						scroller: scrollBlock,
 						onEnter: () => {
+							ourExpertiseImagesItems.forEach((image, subIndex) => {
+								image.classList.remove("is-active");
+								
+							})
 							ourExpertiseImagesItems[index].classList.add("is-active");
 						},
 						onEnterBack: () => {
-							ourExpertiseImagesItems[Math.max(index-1, 0)].classList.add("is-active");
 							ourExpertiseImagesItems.forEach((image, subIndex) => {
-								if(subIndex >= index) {
-									image.classList.remove("is-active");
-								}
+								//if(subIndex != index-1) image.classList.remove("is-active");
+								image.classList.remove("is-active");
 							})
+
+							ourExpertiseImagesItems[Math.max(index-2, 0)].classList.remove("is-active");
+							ourExpertiseImagesItems[Math.max(index-1, 0)].classList.add("is-active");
+							
 							
 						},
 					})
@@ -345,7 +375,8 @@ export default function scrollAnimation(params) {
 				ScrollTrigger.create({
 					trigger: pillSection,
 					start: "top top",
-					
+					scroller: scrollBlock,
+
 					onEnter: () => {
 						document.body.classList.remove("is-light")
 					},
@@ -367,6 +398,7 @@ export default function scrollAnimation(params) {
 						scrub: true,
 						pin: true,
 						pinSpacing: false,
+						scroller: scrollBlock,
 					}
 				});
 				
@@ -390,11 +422,13 @@ export default function scrollAnimation(params) {
 					'--background-color': "rgb(3,3,4)",
 					'--theme-color-1': 'rgb(245,248,255)',
 					'--theme-color-1-reverse': 'rgb(3,3,4)',
+					'--theme-color-2': 'rgb(255,255,255)',
+					'--theme-color-2-reverse': 'rgb(0,0,0)',
 				})
 			
 				pillScrollTimeline.to(pillSectionDecor, {
-					transform: "translate3d(0,0,0) scale(1)",
-					duration: 1,
+					transform: "scale(1) translate3d(0,0,0)",
+					duration: 2,
 				})
 			
 				pillScrollTimeline.to(pillSectionTitle, {
@@ -442,6 +476,7 @@ export default function scrollAnimation(params) {
 						start: `=-${window.innerHeight} top`,
 						end: `top top`,
 						scrub: true,
+						scroller: scrollBlock,
 					}
 				});
 				
@@ -471,8 +506,12 @@ export default function scrollAnimation(params) {
 
 	mm.add("(max-width: 991px)", () => {
 
+		gsap.set(".header", {
+			"--y": "0%",
+		})
+
 		const showAnim = gsap.from('.header', { 
-			transform: "translate3d(0,-100%,0)",
+			"--y": "-100%",
 			paused: true,
 			//duration: 0.05
 		}).progress(1);
@@ -482,6 +521,8 @@ export default function scrollAnimation(params) {
 		let heroScrollTimeline = gsap.timeline(),
 		animTitleScrollTimeline = gsap.timeline(),
 		pillScrollTimeline = gsap.timeline();
+
+		const heroScene = document.querySelector("#hero-scene");
 
 		function resize() {
 			if(prevWindowWidth != window.innerWidth && window.innerWidth <= 991) {
@@ -508,13 +549,13 @@ export default function scrollAnimation(params) {
 				let heroSectionProgressCheck = true;
 
 				ScrollTrigger.create({
-					trigger: "#hero-scene",
+					trigger: ".hero",
 					start: "top top",
 					end: `+=${window.innerHeight*2} top`,
 					scrub: true,
 					pin: true,
 					pinSpacer: false,
-					//pinSpacing: false,
+					pinSpacing: false,
 					animation: heroScrollTimeline,
 					onUpdate: (self) => {
 						
@@ -522,12 +563,13 @@ export default function scrollAnimation(params) {
 
 							heroSectionProgressCheck = false;
 							document.body.classList.add("is-light")
-							//document.body.classList.remove("is-light")
+							heroScene.style.pointerEvents = "none";
 
 						} else if(!heroSectionProgressCheck && self.progress <= 0.6) {
 
 							heroSectionProgressCheck = true;
 							document.body.classList.remove("is-light")
+							heroScene.style.removeProperty("pointer-events")
 
 						}
 					}
@@ -539,8 +581,8 @@ export default function scrollAnimation(params) {
 				})
 				
 				heroScrollTimeline.fromTo(decorElement[0], {
-					"--y": `${vh(10)}px`,
-					"--x": "5vw",
+					"--y": `${vh(11.5)}px`,
+					"--x": "1vw",
 					"--scale": "1",
 				}, {
 					"--y": `${vh(30)}px`,
@@ -551,7 +593,7 @@ export default function scrollAnimation(params) {
 				
 				heroScrollTimeline.fromTo(decorElement[1], {
 					"--y": "0vh",
-					"--x": "0vw",
+					"--x": "-0.5rem",
 					"--scale": "1",
 				}, {
 					"--y": `-${vh(30)}px`,
@@ -595,6 +637,8 @@ export default function scrollAnimation(params) {
 					'--background-color': "rgb(3,3,4)",
 					'--theme-color-1': 'rgb(245,248,255)',
 					'--theme-color-1-reverse': 'rgb(3,3,4)',
+					'--theme-color-2': 'rgb(255,255,255)',
+					'--theme-color-2-reverse': 'rgb(0,0,0)',
 					duration: 3,
 					ease: "power2.inOut",
 				}, 
@@ -604,6 +648,8 @@ export default function scrollAnimation(params) {
 					'--background-color': "rgb(245,248,255)",
 					'--theme-color-1': 'rgb(3,3,4)',
 					'--theme-color-1-reverse': 'rgb(245,248,255)',
+					'--theme-color-2': 'rgb(0,0,0)',
+					'--theme-color-2-reverse': 'rgb(255,255,255)',
 				},
 				"-=4")
 
@@ -713,11 +759,13 @@ export default function scrollAnimation(params) {
 					'--background-color': "rgb(3,3,4)",
 					'--theme-color-1': 'rgb(245,248,255)',
 					'--theme-color-1-reverse': 'rgb(3,3,4)',
+					'--theme-color-2': 'rgb(0,0,0)',
+					'--theme-color-2-reverse': 'rgb(255,255,255)',
 				})
 			
 				pillScrollTimeline.to(pillSectionDecor, {
-					transform: "translate3d(0,0,0) scale(1)",
-					duration: 1,
+					transform: "scale(1) translate3d(0,0,0)",
+					duration: 2,
 				})
 			
 				pillScrollTimeline.to(pillSectionTitle, {

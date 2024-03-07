@@ -8,6 +8,10 @@
 		grid-template-columns: 1fr 1fr;
 	}
 
+	@media (min-width: 1885px) {
+		grid-template-columns: 1.5fr 1fr;
+	}
+
 	// .feedback__title
 
 	&__title {
@@ -25,9 +29,10 @@
 			max-width: 36.75rem; padding-top: 3.75rem;
 		}
 
-		
+		@media (min-width: 1885px) {
+			max-width: 50vw;
+		}
 
-		//min-height: 75svh;
 		cal-inline {
 			iframe {
 				
@@ -43,6 +48,10 @@
 
 				&.-z-10.mb-6.mt-auto.pt-6.block {
 					display: none;
+				}
+
+				html {
+					font-size: 2vw;
 				}
 			}
 		}
