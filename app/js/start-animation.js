@@ -93,7 +93,7 @@ export default function startAnimation(params) {
 		const bodyWrapper = document.querySelector(".body_wrapper");
 		//bodyWrapper.scroll({left: 0, top: 0});
 
-		new SimpleBar(bodyWrapper);
+		new SimpleBar(bodyWrapper, {autoHide: false});
 
 		const bodyContentWrapper = document.querySelector(".simplebar-content-wrapper");
 		bodyContentWrapper.scrollTop = 0;
@@ -130,12 +130,12 @@ export default function startAnimation(params) {
 	
 		gsap.set(decorElement[0], {
 			"--y": "-150%",
-			"--x": "35%",
+			"--x": "38%",
 		})
 	
 		gsap.set(decorElement[1], {
 			"--y": "150%",
-			"--x": "-45%",
+			"--x": "-47%",
 		})
 	
 		gsap.set(heroText, {
@@ -157,7 +157,7 @@ export default function startAnimation(params) {
 		
 	
 		initTimeline.to(loader, {
-			left: "76.5vw",
+			left: "77vw",
 	
 			duration: 2,
 			ease: "power2.inOut",
@@ -175,7 +175,7 @@ export default function startAnimation(params) {
 		}, "-=2.5")
 	
 		initTimeline.to(decorElement[1], {
-			"--y": "10%",
+			"--y": "11%",
 			
 			duration: 2,
 			ease: "power2.inOut",
@@ -242,7 +242,7 @@ export default function startAnimation(params) {
 	
 					document.querySelectorAll(".prototypes__container").forEach(container => {
 
-						const simplebar = new SimpleBar(container),
+						const simplebar = new SimpleBar(container, {autoHide: false}),
 						inner = container.querySelector(".prototypes__container_inner");
 
 						const scroller = container.querySelector(".simplebar-content-wrapper");
@@ -320,9 +320,10 @@ export default function startAnimation(params) {
 						link.addEventListener("click", (event) => {
 							event.preventDefault();
 
-							const y = getCoords(document.querySelector(link.getAttribute("href"))).top;
+							const y = document.querySelector(link.getAttribute("href")).offsetTop;//getCoords(document.querySelector(link.getAttribute("href"))).top;
 							if(link.getAttribute("href") == "#cases-section") {
-								lenis.scrollTo(y-window.innerHeight/2);
+								//lenis.scrollTo(y-window.innerHeight/2);
+								lenis.scrollTo(y+window.innerHeight*1.8);
 							} else {
 								lenis.scrollTo(y);
 							}
@@ -343,42 +344,56 @@ export default function startAnimation(params) {
 		loaderTimeline.pause();
 
 		gsap.set(loader, {
-			"--background-1": "235deg",
+			"--background-1": "225deg",
 			"--background-2": "90deg",
 			"--opacity": "0",
 		})
-
-		loaderTimeline.to(loader, {
-			"--background-1": "120deg",
-			ease: "linear",
-			duration: 1,
-			onComplete: () => {
-				gsap.set(loader, {
-					"--opacity": "1",
-				})
-
-				loaderTimeline.pause();
-			}
-		})
-
-		loaderTimeline.resume();
 	
 		window.addEventListener("load", () => {
 	
 			history.scrollRestoration = "manual";
 			document.body.classList.add("is-init");
 	
+			
+			/* loaderTimeline.to(loader, {
+				"--background-1": "120deg",
+				ease: "linear",
+				duration: 1,
+				onComplete: () => {
+					gsap.set(loader, {
+						"--opacity": "1",
+					})
+				}
+			}) */
+	
+			loaderTimeline.to(loader, {
+				"--background-1": "120deg",
+				ease: "linear",
+				duration: 1,
+				//delay: 0.2,
+			})
+	
+			//loaderTimeline.resume();
 			loaderTimeline.to(loader, {
 				"--background-2": "-90deg",
-				duration: 1.2,
+				duration: 1,
+				ease: "linear",
+				onStart: () => {
+					setTimeout(() => {
+						gsap.set(loader, {
+							"--opacity": "1",
+						})
+					},0)
+				},
 				onComplete: () => {
 					initTimeline.resume();
 				}
-			})
+			},"-=0.2")
 
-			setTimeout(() => {
+			loaderTimeline.resume();
+			/* setTimeout(() => {
 				loaderTimeline.resume()
-			},500)
+			},500) */
 	
 			gsap.fromTo(params.header, {
 
@@ -452,8 +467,8 @@ export default function startAnimation(params) {
 	
 		initTimeline.to(decorElement[0], {
 
-			"--y": `${vh(11.5)}px`,
-			"--x": "1vw",
+			"--y": `${vh(9.5)}px`,
+			"--x": "2vw",
 			
 			duration: 2,
 			ease: "power2.inOut",
@@ -462,8 +477,8 @@ export default function startAnimation(params) {
 	
 		initTimeline.to(decorElement[1], {
 
-			"--y": "0vh",
-			"--x": "-0.5rem",
+			"--y": "-5px",
+			"--x": "-1vw",
 			
 			duration: 2,
 			ease: "power2.inOut",
@@ -501,9 +516,9 @@ export default function startAnimation(params) {
 
 							const y = getCoords(document.querySelector(link.getAttribute("href"))).top;
 							if(link.getAttribute("href") == "#cases-section") {
-								window.scrollTo({left:0,top:y-window.innerHeight/2,behavior:"smooth"});
+								window.scrollTo({left:0,top:y-40,behavior:"smooth"});
 							} else {
-								window.scrollTo({left:0,top:y,behavior:"smooth"});
+								window.scrollTo({left:0,top:y-40,behavior:"smooth"});
 							}
 							
 						})
@@ -521,25 +536,10 @@ export default function startAnimation(params) {
 		loaderTimeline.pause();
 
 		gsap.set(loader, {
-			"--background-1": "235deg",
+			"--background-1": "225deg",
 			"--background-2": "90deg",
 			"--opacity": "0",
 		})
-
-		loaderTimeline.to(loader, {
-			"--background-1": "120deg",
-			ease: "linear",
-			duration: 1,
-			onComplete: () => {
-				gsap.set(loader, {
-					"--opacity": "1",
-				})
-
-				loaderTimeline.pause();
-			}
-		})
-
-		loaderTimeline.resume();
 	
 		window.addEventListener("load", () => {
 	
@@ -547,26 +547,43 @@ export default function startAnimation(params) {
 			document.body.classList.add("is-init");
 
 			loaderTimeline.to(loader, {
-				"--background-2": "-90deg",
-				duration: 1.2,
+				"--background-1": "120deg",
 				ease: "linear",
-				onComplete: () => {
-					initTimeline.resume();
-				}
+				duration: 1,
+				delay: 0.5,
 			})
+	
+			//loaderTimeline.resume();
+			loaderTimeline.to(loader, {
+				"--background-2": "-90deg",
+				duration: 1,
+				ease: "linear",
+				onStart: () => {
+					gsap.set(loader, {
+						"--opacity": "1",
+					})
+				},
+				onComplete: () => {
+					setTimeout(() => initTimeline.resume(), 1000)
+				}
+			},"-=0.3")
 
-			setTimeout(() => {
-				loaderTimeline.resume()
-			},500)
+			loaderTimeline.resume();
 
-			gsap.to(params.header, {
+			gsap.fromTo(params.header, {
 
-				transform: "translate3d(0,0,0)",
+				"--y": "-100%",
 		
 				duration: 2,
 				delay: 2,
 				ease: "power2.inOut",
-
+	
+			}, {
+				"--y": "0%",
+		
+				duration: 2,
+				delay: 2,
+				ease: "power2.inOut",
 			})
 
 			

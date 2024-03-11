@@ -30,20 +30,23 @@
 
 	&__decor_element {
 		position: absolute;
+
 		&:nth-child(1) {
 			left: 0; top: -3vw;
 			width: min(17vh, 32.5vw); height: auto; max-width: 9.375rem;
-			transform: translate3d(var(--x),var(--y),0) scale3d(var(--scale,1), var(--scale,1), 1) rotate(12deg);
+			transform: translate3d(var(--x),var(--y),0) scale3d(var(--scale,1), var(--scale,1), 1);
 			transform-origin: right bottom;
 
 			@media (max-width: 992px) and (min-height: 625px) {
-				width: min(20vh, 32.5vw);
+				width: min(25vh, 35.5vw);
 				top: 0;
 			}
 
 			@include _992 {
-				width: 20.4375rem; max-width: none;
-				top: 0;
+				width: 22.4375rem; max-width: none;
+				top: -6%;
+
+				transform: translate3d(var(--x),var(--y),0) scale3d(var(--scale,1), var(--scale,1), 1);
 			}
 
 			img {
@@ -60,7 +63,7 @@
 			-webkit-mask: linear-gradient(180deg, #000 70%, transparent 100%);
 
 			@media (max-width: 992px) and (min-height: 625px) {
-				width: min(25vh, 40vw);
+				width: min(25vh, 43vw);
 			}
 
 			@include _992 {
@@ -101,14 +104,20 @@
 
 		.line {
 
+			padding-right: 0.5rem;
+			white-space: nowrap;
+			display: flex !important;
+
 			&:nth-child(odd) {
 				text-align: end !important;
+				justify-content: flex-end;
 				transform: translate3d(var(--x-2),0,0);
 				//transform: translate3d(50%,0,0);
 			}
 
 			&:nth-child(1) {
 				transform: translate3d(var(--x-1),0,0);
+				padding-top: 0.25rem;
 			}
 
 			&:nth-child(2) {
@@ -117,6 +126,7 @@
 
 			&:nth-child(3) {
 				transform: translate3d(var(--x-3),0,0);
+				padding-right: 0.8125rem; padding-bottom: 0.75rem;
 			}
 		}
 	}
@@ -126,7 +136,11 @@
 		text-align: center;
 		opacity: 0;
 
-		margin-top: 3rem;
+		margin-top: 3.15rem;
+
+		svg {
+			margin-left: 0.3ch;
+		}
 	}
 
 	// .hero__text
@@ -134,28 +148,34 @@
 	&__text {
 		@include _992 {
 			position: absolute;
-			right: calc(var(--container-padding) + var(--load-padding,0px)); top: calc(var(--svh,1vh) * 50); top: 50svh;
-			transform: translate3d(var(--x,0),-75%,0);
+			right: calc(var(--container-padding) + 0.625rem); top: calc(var(--svh,1vh) * 50); top: 50svh;
+			transform: translate3d(var(--x,0),-80%,0);
 
-			width: 11rem;
+			width: 10rem;
 			margin: 0; max-width: none;
 			text-align: end;
 
+			font-size: 1rem;
 			font-weight: 500;
+			line-height: 143.75%;
+			letter-spacing: -0.04em;
 
-			padding-top: 0;
+			padding-top: 0; padding-right: 0;
 			opacity: 1;
 		}
 
-		padding-top: 1.5rem;
+		padding-top: 1.5rem; padding-right: 0.3125rem;
 
+		font-family: var(--main-font);	
 		color: var(--white);
-		font-size: 1rem;
+		font-size: 0.9375rem;
 		line-height: 143.75%;
-		font-weight: 400;
+		letter-spacing: -0.04em;
+		font-weight: 500;
 		text-align: center;
+		
 
-		max-width: 15.6875rem; margin: 0 auto;
+		max-width: 14rem; margin: 0 auto;
 
 		opacity: 0;
 	}

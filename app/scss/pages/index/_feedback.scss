@@ -36,10 +36,12 @@
 		cal-inline {
 			iframe {
 				
-				height: 75vh !important;
-				height: 75svh !important;
+				@include _992 {
+					height: 75vh !important;
+					height: 75svh !important;
 
-				overflow-y: auto;
+					overflow-y: auto;
+				}
 
 				@media (min-width: 1885px) {
 					height: 55vh !important;

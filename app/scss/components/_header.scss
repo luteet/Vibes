@@ -39,8 +39,23 @@
 		@include _992 {
 			top: 0;
 		}
+
 		&::before {
 			opacity: 0;
+		}
+	}
+
+	&.on-top &__nav {
+		top: -1rem;
+		@include _992 {
+			top: 0;
+		}
+	}
+
+	&.on-top &__nav_logo {
+		margin-top: 0.5rem;
+		@include _992 {
+			margin-top: 0;
 		}
 	}
 
@@ -221,9 +236,12 @@
 				line-height: 1;
 				color: var(--theme-color-2, var(--white));
 				font-weight: 500;
+				letter-spacing: -0.05em;
+				padding: 0.75rem 0.9rem;
+
 			}
 
-			display: grid;
+			display: block;
 			overflow: hidden;
 
 			font-family: var(--title-font);
@@ -237,7 +255,12 @@
 				color: #6A6A74;
 			}
 
-			> * {
+			> span {
+				display: grid;
+				overflow: hidden;
+			}
+
+			> span > * {
 				grid-area: 1/1;
 				align-self: center; justify-self: self-start;
 				@include _992 {
@@ -252,7 +275,7 @@
 			}
 
 			@media (any-hover: hover) and (min-width: 992px) {
-				&:hover > * {
+				&:hover > span > * {
 					&:nth-child(1) {
 						transform: translate3d(0,-150%,0);
 					}
@@ -302,7 +325,8 @@
 	&__burger {
 		position: relative;
 	
-		width: 28px; height: 28px;
+		width: 1.75rem; height: 1.875rem;
+		transform: translate3d(0,-2px,0);
 
 		&::before {
 			content: '';
@@ -336,7 +360,7 @@
 	
 			&:nth-child(1) {
 				top: 50%;
-				transform: translate3d(0,-7px,0.0001px);
+				transform: translate3d(0,-9px,0.0001px);
 			}
 
 			&:nth-child(2) {
@@ -347,7 +371,7 @@
 
 			&:nth-child(3) {
 				top: 50%;
-				transform: translate3d(0, calc(7px - 100%), 0.0001px);
+				transform: translate3d(0, calc(9px - 100%), 0.0001px);
 			}
 		}
 

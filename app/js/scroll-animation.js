@@ -115,7 +115,7 @@ export default function scrollAnimation(params) {
 				
 				heroScrollTimeline.fromTo(decorElement[0], {
 					"--y": "0%",
-					"--x": "35%",
+					"--x": "38%",
 					"--scale": "1",
 				}, {
 					"--x": "80%",
@@ -125,8 +125,8 @@ export default function scrollAnimation(params) {
 				}, "-=1")
 				
 				heroScrollTimeline.fromTo(decorElement[1], {
-					"--y": "10%",
-					"--x": "-45%",
+					"--y": "11%",
+					"--x": "-47%",
 					"--scale": "1",
 				}, {
 					"--x": "-80%",
@@ -557,6 +557,7 @@ export default function scrollAnimation(params) {
 					pinSpacer: false,
 					pinSpacing: false,
 					animation: heroScrollTimeline,
+
 					onUpdate: (self) => {
 						
 						if(heroSectionProgressCheck && self.progress >= 0.7) {
@@ -581,8 +582,8 @@ export default function scrollAnimation(params) {
 				})
 				
 				heroScrollTimeline.fromTo(decorElement[0], {
-					"--y": `${vh(11.5)}px`,
-					"--x": "1vw",
+					"--y": `${vh(9.5)}px`,
+					"--x": "2vw",
 					"--scale": "1",
 				}, {
 					"--y": `${vh(30)}px`,
@@ -592,8 +593,8 @@ export default function scrollAnimation(params) {
 				}, "-=1")
 				
 				heroScrollTimeline.fromTo(decorElement[1], {
-					"--y": "0vh",
-					"--x": "-0.5rem",
+					"--y": "-5px",
+					"--x": "-1vw",
 					"--scale": "1",
 				}, {
 					"--y": `-${vh(30)}px`,

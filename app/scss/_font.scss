@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
 	@include font-include('Inter', 400, swap, normal, 'Inter-Regular');
 }
 
@@ -8,7 +8,9 @@
 
 @font-face {
 	@include font-include('Inter', 600, swap, normal, 'Inter-SemiBold');
-}
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 @font-face {
 	@include font-include('Nohemi', 300, swap, normal, 'Nohemi-Light');
@@ -35,7 +37,7 @@
 	font-family: var(--title-font);
 	
 	font-size: 2.75rem; // 44px
-	line-height: 105%;
+	line-height: 100%;
 	letter-spacing: -0.04em;
 	font-weight: 300;
 
@@ -95,15 +97,19 @@
 	
 	@include _992 {
 		font-size: 6.5625rem; // 105px
+		
+		line-height: 100%;
 		.symbol {
 			font-size: 4.375rem; // 70px
 		}
 	}
 
 	svg {
-		flex: 0 0 1.2ch; width: 1.2ch; height: auto;
+		flex: 0 0 1.15ch; width: 1.15ch; height: auto;
+		transform: translate(0,0.1ch);
 		@include _992 {
 			flex: 0 0 1ch; width: 1ch; margin: 0 0.15ch 0.1ch;
+			transform: none;
 		}
 	}
 	

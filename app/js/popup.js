@@ -121,6 +121,26 @@ export default function Popup(arg) {
 			let sliderArray = [];
 			document.querySelectorAll('.prototypes__slider').forEach(sliderElement => {
 
+				
+
+				sliderElement.querySelectorAll(".prototypes__other_slider").forEach(sliderElement => {
+					const slider = new Splide(sliderElement, {
+			
+						perPage: 1,
+						gap: "1rem",
+						speed: 700,
+						padding: {
+							right: "3rem",
+						},
+						arrows: false,
+						pagination: false,
+						updateOnMove: true,
+				
+					});
+
+					slider.mount();
+				})
+
 				const slider = new Splide(sliderElement, {
 			
 					type: "fade",
@@ -128,6 +148,7 @@ export default function Popup(arg) {
 					speed: 700,
 					easing: "ease",
 					pagination: false,
+					drag: false,
 			
 				});
 			
@@ -151,6 +172,7 @@ export default function Popup(arg) {
 				})
 			
 				slider.mount();
+				//slider2.mount();
 
 				sliderArray.push(slider);
 			

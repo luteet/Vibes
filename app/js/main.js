@@ -128,7 +128,6 @@ window.addEventListener('resize', resize)
 
 // =-=-=-=-=-=-=-=-=-=-=-=- <slider> -=-=-=-=-=-=-=-=-=-=-=-=
 
-//sliders();
 
 // =-=-=-=-=-=-=-=-=-=-=-=- </slider> -=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -178,6 +177,21 @@ document.querySelectorAll(".video_block").forEach(block => {
 })
 
 // =-=-=-=-=-=-=-=-=-=-=-=- </video> -=-=-=-=-=-=-=-=-=-=-=-=
+
+document.addEventListener('keydown', function (event) {
+    // Отключение масштабирования с помощью Cmd (⌘) и плюс (+)
+    if ((event.metaKey || event.ctrlKey) && event.key === '+' || event.key === '=') {
+        event.preventDefault();
+    }
+    // Отключение масштабирования с помощью Cmd (⌘) и минус (-)
+    if ((event.metaKey || event.ctrlKey) && event.key === '-') {
+        event.preventDefault();
+    }
+    // Отключение сброса масштабирования с помощью Cmd (⌘) и 0
+    if ((event.metaKey || event.ctrlKey) && event.key === '0') {
+        event.preventDefault();
+    }
+});
 
 startAnimation({
 	header, menu

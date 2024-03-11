@@ -138,15 +138,16 @@ export default function customMouse() {
 		document.querySelectorAll(".magnetic_button, .header__nav_list a").forEach(button => {
 
 			let xTo = gsap.utils.pipe(
-				gsap.utils.clamp(-30, 30),
-				gsap.utils.snap(2),
-				gsap.quickTo(button, "x", {duration: 0.5, ease: "power3"}),
+				//gsap.utils.clamp(-30, 30),
+				//gsap.utils.snap(2),
+				gsap.quickTo(button, "x", {duration: 1.25, ease: "elastic.out(1, 0.3)"}),
 			);
 
 			let yTo = gsap.utils.pipe(
-				gsap.utils.clamp(-30, 30),
-				gsap.utils.snap(2),
-				gsap.quickTo(button, "y", {duration: 0.5, ease: "power3"}),
+				//gsap.utils.clamp(-30, 30),
+				
+				//gsap.utils.snap(2),
+				gsap.quickTo(button, "y", {duration: 1.25, ease: "elastic.out(1, 0.3)"}),
 			);
 
 			const mouseMove = (event) => {
@@ -162,14 +163,23 @@ export default function customMouse() {
 
 			const mouseLeave = (e) => {
 				if(device == "desktop") {
-					gsap.to(button, {x: 0, duration: 0.7, ease: "elastic.out(1, 0.3)"})
-					gsap.to(button, {y: 0, duration: 0.7, ease: "elastic.out(1, 0.3)"})
+					/* gsap.to(button, {x: 0, duration: 1, ease: "elastic.out(1, 0.3)"})
+					gsap.to(button, {y: 0, duration: 1, ease: "elastic.out(1, 0.3)"}) */
+					xTo(0)
+					yTo(0)
+				}
+			}
+
+			const mouseEnter = (e) => {
+				if(device == "desktop") {
+					
 					xTo(0)
 					yTo(0)
 				}
 			}
 
 			button.addEventListener("mousemove", mouseMove)
+			button.addEventListener("mouseenter", mouseEnter)
 			button.addEventListener("mouseleave", mouseLeave)
 		})
 		
