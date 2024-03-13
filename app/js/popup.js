@@ -121,8 +121,6 @@ export default function Popup(arg) {
 			let sliderArray = [];
 			document.querySelectorAll('.prototypes__slider').forEach(sliderElement => {
 
-				
-
 				sliderElement.querySelectorAll(".prototypes__other_slider").forEach(sliderElement => {
 					const slider = new Splide(sliderElement, {
 			
@@ -155,7 +153,7 @@ export default function Popup(arg) {
 				const title = sliderElement.querySelector(".prototypes__title"),
 				titleElements = title.querySelectorAll(".prototypes__title_slide"),
 				count = sliderElement.querySelector(".prototypes__count"),
-				lengthSlides = (sliderElement.querySelectorAll(".splide__slide").length >= 10) ? sliderElement.querySelectorAll(".splide__slide").length : `0${sliderElement.querySelectorAll(".splide__slide").length}`;
+				lengthSlides = (sliderElement.querySelectorAll(".prototypes__slide").length >= 10) ? sliderElement.querySelectorAll(".prototypes__slide").length : `0${sliderElement.querySelectorAll(".prototypes__slide").length}`;
 			
 				slider.on("move", () => {
 			

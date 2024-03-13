@@ -5,6 +5,8 @@
 		margin-top: 0;
 	}
 
+	
+
 	//height: 100vh;
 
 	&__inner {
@@ -24,6 +26,8 @@
 			text-align: center;
 			min-height: 100vh;
 		}
+
+		perspective: 400px;
 	}
 
 	// .our_expertise__title
@@ -31,6 +35,7 @@
 	&__title {
 
 		text-align: start;
+		transform: translateZ(1px);
 
 		@include _992 {
 			min-height: 100%;

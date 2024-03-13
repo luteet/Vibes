@@ -23,7 +23,8 @@ export default function customMouse() {
 	
 	};
 
-	const device = getDeviceType();
+	let device = getDeviceType();
+	window.addEventListener("resize", () => device = getDeviceType());
 	
 	let xCTo = gsap.quickTo(".custom_cursor, .play_cursor, .pause_cursor", "left", {
 		duration: 0.2,
@@ -57,15 +58,26 @@ export default function customMouse() {
 		}
 	}
 
-	document.addEventListener("mousemove", mouseMove);
+	document.addEventListener("pointermove", mouseMove);
+	/* document.addEventListener("pointermove", (event) => {
+		console.log(event)
+	}); */
 
 	document.querySelectorAll(".is-active-mouse").forEach(activeMouseElement => {
 		activeMouseElement.addEventListener("mouseenter", () => {
-			if(device == "desktop") customCursor.classList.add("is-active")
+			if(device == "desktop") {
+				customCursor.classList.add("is-active");
+				if(activeMouseElement.classList.contains("disable-difference")) {
+					customCursor.classList.add("is-none-difference");
+				}
+			}
 		})
 
 		activeMouseElement.addEventListener("mouseleave", () => {
-			if(device == "desktop") customCursor.classList.remove("is-active")
+			if(device == "desktop") {
+				customCursor.classList.remove("is-active");
+				customCursor.classList.remove("is-none-difference");
+			}
 		})
 	})
 
@@ -87,6 +99,14 @@ export default function customMouse() {
 			}
 		})
 	})
+
+	/* document.querySelectorAll(".simplebar-track").forEach(activeMouseElement => {
+		activeMouseElement.addEventListener("pointerenter", () => {
+			if(device == "desktop") {
+				console.log("enter")
+			}
+		})
+	}) */
 
 	document.querySelectorAll(".prototypes__container, .prototypes__bg").forEach(activeMouseElement => {
 		activeMouseElement.addEventListener("mouseenter", () => {
@@ -137,17 +157,20 @@ export default function customMouse() {
 
 		document.querySelectorAll(".magnetic_button, .header__nav_list a").forEach(button => {
 
+			let sizeButton = button.offsetHeight;
+
 			let xTo = gsap.utils.pipe(
-				//gsap.utils.clamp(-30, 30),
-				//gsap.utils.snap(2),
-				gsap.quickTo(button, "x", {duration: 1.25, ease: "elastic.out(1, 0.3)"}),
+				gsap.utils.clamp(-sizeButton, sizeButton),
+				gsap.utils.snap(10),
+				gsap.quickTo(button, "x", {duration: 1.5, ease: "elastic.out(1, 0.3)"}),
 			);
 
 			let yTo = gsap.utils.pipe(
 				//gsap.utils.clamp(-30, 30),
-				
-				//gsap.utils.snap(2),
-				gsap.quickTo(button, "y", {duration: 1.25, ease: "elastic.out(1, 0.3)"}),
+				//gsap.utils.clamp(-30, 30),
+				gsap.utils.clamp(-sizeButton, sizeButton),
+				gsap.utils.snap(10),
+				gsap.quickTo(button, "y", {duration: 1.5, ease: "elastic.out(1, 0.3)"}),
 			);
 
 			const mouseMove = (event) => {
@@ -172,7 +195,7 @@ export default function customMouse() {
 
 			const mouseEnter = (e) => {
 				if(device == "desktop") {
-					
+					sizeButton = button.offsetHeight;
 					xTo(0)
 					yTo(0)
 				}

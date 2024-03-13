@@ -101,6 +101,8 @@
 		line-height: 100%;
 		.symbol {
 			font-size: 4.375rem; // 70px
+			margin-right: 0.4ch; //margin-left: 0.1ch;
+			transform: translate(0,0.2ch);
 		}
 	}
 
@@ -108,7 +110,7 @@
 		flex: 0 0 1.15ch; width: 1.15ch; height: auto;
 		transform: translate(0,0.1ch);
 		@include _992 {
-			flex: 0 0 1ch; width: 1ch; margin: 0 0.15ch 0.1ch;
+			flex: 0 0 1ch; width: 1ch; margin: 0 0.4ch 0.15ch;
 			transform: none;
 		}
 	}

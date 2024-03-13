@@ -229,15 +229,15 @@
 			font-size: 2.5rem;
 
 			@include _992 {
-				padding: 0 0.8rem;
 
 				font-family: var(--main-font);
 				font-size: 1rem;
 				line-height: 1;
 				color: var(--theme-color-2, var(--white));
-				font-weight: 500;
+				//font-weight: medium;
+				font-weight: 450;
 				letter-spacing: -0.05em;
-				padding: 0.75rem 0.9rem;
+				padding: 0.75rem 0.85rem;
 
 			}
 
@@ -258,6 +258,7 @@
 			> span {
 				display: grid;
 				overflow: hidden;
+				padding: 0 0.05rem;
 			}
 
 			> span > * {

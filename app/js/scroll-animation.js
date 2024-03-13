@@ -447,12 +447,12 @@ export default function scrollAnimation(params) {
 				},"-=2")
 			
 				pillScrollTimeline.to(pillSectionDecorElements[0], {
-					transform: `translate3d(-${window.innerWidth}px,-50%,0) rotate(-25deg)`,
+					transform: `translate3d(-${window.innerWidth}px, -50%, 0) rotate(-25deg)`,
 					duration: 2,
 				},"-=1")
 			
 				pillScrollTimeline.to(pillSectionDecorElements[1], {
-					transform: `translate3d(${window.innerWidth}px,-50%,0) rotate(25deg)`,
+					transform: `translate3d(${window.innerWidth}px, -50%, 0) rotate(25deg)`,
 					duration: 2,
 				},"-=2")
 			
@@ -765,7 +765,7 @@ export default function scrollAnimation(params) {
 				})
 			
 				pillScrollTimeline.to(pillSectionDecor, {
-					transform: "scale(1) translate3d(0,0,0)",
+					transform: "translate3d(0,0,0)",
 					duration: 2,
 				})
 			

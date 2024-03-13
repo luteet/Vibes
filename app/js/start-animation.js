@@ -344,7 +344,7 @@ export default function startAnimation(params) {
 		loaderTimeline.pause();
 
 		gsap.set(loader, {
-			"--background-1": "225deg",
+			"--background-1": "270deg",
 			"--background-2": "90deg",
 			"--opacity": "0",
 		})
@@ -367,9 +367,9 @@ export default function startAnimation(params) {
 			}) */
 	
 			loaderTimeline.to(loader, {
-				"--background-1": "120deg",
-				ease: "linear",
-				duration: 1,
+				"--background-1": "90deg",
+				ease: "none",
+				duration: 1.5,
 				//delay: 0.2,
 			})
 	
@@ -377,7 +377,7 @@ export default function startAnimation(params) {
 			loaderTimeline.to(loader, {
 				"--background-2": "-90deg",
 				duration: 1,
-				ease: "linear",
+				ease: "none",
 				onStart: () => {
 					setTimeout(() => {
 						gsap.set(loader, {
@@ -388,7 +388,7 @@ export default function startAnimation(params) {
 				onComplete: () => {
 					initTimeline.resume();
 				}
-			},"-=0.2")
+			},"-=0.6")
 
 			loaderTimeline.resume();
 			/* setTimeout(() => {
@@ -536,7 +536,7 @@ export default function startAnimation(params) {
 		loaderTimeline.pause();
 
 		gsap.set(loader, {
-			"--background-1": "225deg",
+			"--background-1": "270deg",
 			"--background-2": "90deg",
 			"--opacity": "0",
 		})
