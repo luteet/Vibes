@@ -457,7 +457,7 @@ a {
 	text-transform: uppercase;
 	color: transparent;
 
-	z-index: 3;
+	z-index: 10;
 
 	transition: transform .3s ease, color .3s ease;
 	@media (any-hover: hover) {
