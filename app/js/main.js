@@ -1,6 +1,6 @@
 import Popup from "./popup.js";
 import form from "./form.js";
-import startAnimation from "./start-animation.js?v=7"
+import startAnimation from "./start-animation.js?v=8"
 
 const 
 	body = document.querySelector('body'),
@@ -159,6 +159,25 @@ document.querySelectorAll(".video_block").forEach(block => {
 				progress = video.currentTime / video.duration * 100;
 				if(progress) block.style.setProperty("--progress", progress)
 			},50)
+		}
+	})
+
+	video.addEventListener("ended", () => {
+		//console.log("ended")
+		block.classList.remove("is-playing");
+		block.style.setProperty("--progress", 100)
+		//setTimeout(() => video.setAttribute("muted", true), 500)
+		video.setAttribute("muted", true)
+		video.muted = true;
+		video.loop = true;
+		video.play();
+
+		if(!video.muted) {
+			
+			/* interval = setInterval(() => {
+				progress = video.currentTime / video.duration * 100;
+				if(progress) block.style.setProperty("--progress", progress)
+			},50) */
 		}
 	})
 	

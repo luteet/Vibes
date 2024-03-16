@@ -130,12 +130,12 @@ export default function startAnimation(params) {
 	
 		gsap.set(decorElement[0], {
 			"--y": "-150%",
-			"--x": "38%",
+			"--x": "108%",
 		})
 	
 		gsap.set(decorElement[1], {
 			"--y": "150%",
-			"--x": "-47%",
+			"--x": "-80%",
 		})
 	
 		gsap.set(heroText, {
@@ -169,6 +169,7 @@ export default function startAnimation(params) {
 	
 		initTimeline.to(decorElement[0], {
 			"--y": "0%",
+			"--x": "38%",
 			
 			duration: 2,
 			ease: "power2.inOut",
@@ -176,6 +177,7 @@ export default function startAnimation(params) {
 	
 		initTimeline.to(decorElement[1], {
 			"--y": "11%",
+			"--x": "-47%",
 			
 			duration: 2,
 			ease: "power2.inOut",
@@ -443,12 +445,12 @@ export default function startAnimation(params) {
 	
 		gsap.set(decorElement[0], {
 			"--y": "-150%",
-			"--x": "-105%",
+			"--x": "105%",
 		})
 	
 		gsap.set(decorElement[1], {
 			"--y": "100%",
-			"--x": "100%",
+			"--x": "-100%",
 		})
 	
 		initTimeline.to(loader, {
@@ -467,8 +469,8 @@ export default function startAnimation(params) {
 	
 		initTimeline.to(decorElement[0], {
 
-			"--y": `${vh(9.5)}px`,
-			"--x": "2vw",
+			"--y": `${vh(10)}px`,
+			"--x": "12vw",
 			
 			duration: 2,
 			ease: "power2.inOut",
@@ -478,7 +480,7 @@ export default function startAnimation(params) {
 		initTimeline.to(decorElement[1], {
 
 			"--y": "-5px",
-			"--x": "-1vw",
+			"--x": "-20%",
 			
 			duration: 2,
 			ease: "power2.inOut",

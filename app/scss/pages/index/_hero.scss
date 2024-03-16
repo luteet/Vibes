@@ -32,19 +32,20 @@
 		position: absolute;
 
 		&:nth-child(1) {
-			left: 0; top: -3vw;
-			width: min(17vh, 32.5vw); height: auto; max-width: 9.375rem;
+			right: 0; top: -3vw;
+			width: min(32vh, 68vw); height: auto; max-width: 21.875rem;
 			transform: translate3d(var(--x),var(--y),0) scale3d(var(--scale,1), var(--scale,1), 1);
 			transform-origin: right bottom;
 
 			@media (max-width: 992px) and (min-height: 625px) {
-				width: min(25vh, 35.5vw);
+				width: min(38vh, 68vw);
 				top: 0;
 			}
 
 			@include _992 {
-				width: 22.4375rem; max-width: none;
-				top: -6%;
+				width: 31rem; max-width: none;
+				top: 3%;
+				right: 20.25vw;
 
 				transform: translate3d(var(--x),var(--y),0) scale3d(var(--scale,1), var(--scale,1), 1);
 			}
@@ -55,21 +56,22 @@
 		}
 
 		&:nth-child(2) {
-			right: 0; bottom: 0;
-			width: min(20vh, 40vw); height: auto; max-width: 12.5rem;
-			transform: translate3d(calc(var(--x) - var(--load-padding,0px)),var(--y),0) scale3d(var(--scale,1), var(--scale,1), 0.5) rotate(-5deg);
-			transform-origin: 35% top;
+			left: 0; bottom: 0;
+			width: min(30vh, 65vw); height: auto; max-width: 25rem;
+			transform: translate3d(calc(var(--x) - var(--load-padding,0px)),var(--y),0) scale3d(var(--scale,1), var(--scale,1), 0.5);
+			transform-origin: 55% top;
 
 			-webkit-mask: linear-gradient(180deg, #000 70%, transparent 100%);
 
 			@media (max-width: 992px) and (min-height: 625px) {
-				width: min(25vh, 43vw);
+				width: min(40vh, 70vw);
 			}
 
 			@include _992 {
-				width: 24.5rem; max-width: none;
-				top: calc(var(--svh,1vh) * 50); top: 50svh;
+				width: 49.3125rem; max-width: none;
+				top: calc(var(--svh,1vh) * 40.5); top: 40.5svh;
 				bottom: auto;
+				left: 17.5vw;
 			}
 
 			img {

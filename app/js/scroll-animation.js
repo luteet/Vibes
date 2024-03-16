@@ -118,7 +118,7 @@ export default function scrollAnimation(params) {
 					"--x": "38%",
 					"--scale": "1",
 				}, {
-					"--x": "80%",
+					"--x": "0%",
 					"--y": "50%",
 					"--scale": "1.1",
 					duration: 2,
@@ -129,29 +129,29 @@ export default function scrollAnimation(params) {
 					"--x": "-47%",
 					"--scale": "1",
 				}, {
-					"--x": "-80%",
-					"--y": "-30%",
+					"--x": "-20%",
+					"--y": "-10%",
 					"--scale": "1.1",
 					duration: 2,
 				}, "-=2")
 				
 				heroScrollTimeline.to(decorElement[0], {
-					"--x": "80%",
+					"--x": "0%",
 					"--y": "50%",
 					"--scale": "1.1",
 					duration: 1,
 				})
 				
 				heroScrollTimeline.to(decorElement[1], {
-					"--x": "-80%",
-					"--y": "-30%",
+					"--x": "-20%",
+					"--y": "-10%",
 					"--scale": "1.1",
 					duration: 1,
 				}, "-=1")
 				
 				heroScrollTimeline.to(decorElement[0], {
-					"--x": "45%",
-					"--y": "45%",
+					"--x": `500%`,
+					"--y": "5%",
 					"--scale": "6.5",
 					//opacity: 0,
 					duration: 3,
@@ -159,8 +159,8 @@ export default function scrollAnimation(params) {
 				})
 				
 				heroScrollTimeline.to(decorElement[1], {
-					"--x": "-80%",
-					"--y": "30%",
+					"--x": "-100%",
+					"--y": "50%",
 					"--scale": "6.5",
 					//opacity: 0,
 					duration: 3,
@@ -582,30 +582,30 @@ export default function scrollAnimation(params) {
 				})
 				
 				heroScrollTimeline.fromTo(decorElement[0], {
-					"--y": `${vh(9.5)}px`,
-					"--x": "2vw",
+					"--y": `${vh(10)}px`,
+					"--x": "12vw",
 					"--scale": "1",
 				}, {
-					"--y": `${vh(30)}px`,
-					"--x": "20vw",
+					"--y": `${vh(35)}px`,
+					"--x": "0",
 					"--scale": "1.1",
 					duration: 2,
 				}, "-=1")
 				
 				heroScrollTimeline.fromTo(decorElement[1], {
 					"--y": "-5px",
-					"--x": "-1vw",
+					"--x": "-20%",
 					"--scale": "1",
 				}, {
 					"--y": `-${vh(30)}px`,
-					"--x": "-20vw",
+					"--x": "-5%",
 					"--scale": "1.1",
 					duration: 2,
 				}, "-=2")
 				
 				heroScrollTimeline.to(decorElement[0], {
-					"--y": `-${vh(10)}px`,
-					"--x": "-10vw",
+					"--y": `${vh(15)}px`,
+					"--x": "550%",
 					"--scale": "6.5",
 					//opacity: 0,
 					duration: 3,
@@ -614,7 +614,7 @@ export default function scrollAnimation(params) {
 				
 				heroScrollTimeline.to(decorElement[1], {
 					"--y": `${vh(30)}px`,
-					"--x": `0vw`,
+					"--x": `-250%`,
 					"--scale": "6.5",
 					//opacity: 0,
 					duration: 3,

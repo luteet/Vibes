@@ -158,20 +158,26 @@ export default function customMouse() {
 		document.querySelectorAll(".magnetic_button, .header__nav_list a").forEach(button => {
 
 			let sizeButton = button.offsetHeight;
+			let xTo, yTo;
 
-			let xTo = gsap.utils.pipe(
-				gsap.utils.clamp(-sizeButton, sizeButton),
-				gsap.utils.snap(10),
-				gsap.quickTo(button, "x", {duration: 1.5, ease: "elastic.out(1, 0.3)"}),
-			);
+			function resize() {
+				xTo = gsap.utils.pipe(
+					gsap.utils.clamp(-window.innerWidth/35, window.innerWidth/35),
+					gsap.utils.snap(10),
+					gsap.quickTo(button, "x", {duration: 1.5, ease: "elastic.out(1, 0.3)"}),
+				);
+	
+				yTo = gsap.utils.pipe(
+					//gsap.utils.clamp(-30, 30),
+					//gsap.utils.clamp(-30, 30),
+					gsap.utils.clamp(-window.innerWidth/35, window.innerWidth/35),
+					gsap.utils.snap(10),
+					gsap.quickTo(button, "y", {duration: 1.5, ease: "elastic.out(1, 0.3)"}),
+				);
+			}
 
-			let yTo = gsap.utils.pipe(
-				//gsap.utils.clamp(-30, 30),
-				//gsap.utils.clamp(-30, 30),
-				gsap.utils.clamp(-sizeButton, sizeButton),
-				gsap.utils.snap(10),
-				gsap.quickTo(button, "y", {duration: 1.5, ease: "elastic.out(1, 0.3)"}),
-			);
+			window.addEventListener("resize", resize)
+			resize();
 
 			const mouseMove = (event) => {
 				if(device == "desktop" && !button.disabled) {
