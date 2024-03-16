@@ -162,7 +162,7 @@ export default function customMouse() {
 
 			function resize() {
 				xTo = gsap.utils.pipe(
-					gsap.utils.clamp(-window.innerWidth/35, window.innerWidth/35),
+					gsap.utils.clamp(-window.innerWidth/40, window.innerWidth/40),
 					gsap.utils.snap(10),
 					gsap.quickTo(button, "x", {duration: 1.5, ease: "elastic.out(1, 0.3)"}),
 				);
@@ -170,7 +170,7 @@ export default function customMouse() {
 				yTo = gsap.utils.pipe(
 					//gsap.utils.clamp(-30, 30),
 					//gsap.utils.clamp(-30, 30),
-					gsap.utils.clamp(-window.innerWidth/35, window.innerWidth/35),
+					gsap.utils.clamp(-window.innerWidth/40, window.innerWidth/40),
 					gsap.utils.snap(10),
 					gsap.quickTo(button, "y", {duration: 1.5, ease: "elastic.out(1, 0.3)"}),
 				);
