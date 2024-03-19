@@ -170,7 +170,7 @@ document.querySelectorAll(".video_block").forEach(block => {
 		video.setAttribute("muted", true)
 		video.muted = true;
 		video.loop = true;
-		video.play();
+		setTimeout(() => video.play(), 0)
 
 		if(!video.muted) {
 			

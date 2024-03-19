@@ -34,6 +34,23 @@ export default function scrollAnimation(params) {
 
 	let mm = gsap.matchMedia();
 
+	let pillDecorImages = [];
+	document.querySelectorAll(".pill__decor").forEach(pillDecor => {
+		const length = Number(pillDecor.dataset.length);
+		for (let index = 0; index < length; index++) {
+			let imageName = String(index+1).padStart(4, '0');
+			pillDecor.insertAdjacentHTML("beforeend", `
+				<picture>
+					<source srcset="img/animation-sequence/${imageName}.avif" type="image/avif">
+					<source srcset="img/animation-sequence/${imageName}.webp" type="image/webp">
+					<img src="img/animation-sequence/${imageName}.png" alt="" width="0" height="0">
+				</picture>
+			`)
+
+			pillDecorImages.push(pillDecor.querySelectorAll("img")[index]);
+		}
+	})
+
 	mm.add("(min-width: 992px)", () => {
 
 		let heroScrollTimeline = gsap.timeline(),
@@ -369,8 +386,7 @@ export default function scrollAnimation(params) {
 				pillSectionTitle = pillSection.querySelector(".pill__title"),
 				pillSectionTitleLine1 = pillSection.querySelectorAll(".pill__title.visible-on-desktop > *")[0],
 				pillSectionTitleLine2 = pillSection.querySelectorAll(".pill__title.visible-on-desktop > *")[1],
-				pillSectionDecor = pillSection.querySelector(".pill__decor"),
-				pillSectionDecorElements = pillSection.querySelectorAll(".pill__decor_item");
+				pillSectionDecor = pillSection.querySelector(".pill__decor");
 		
 				ScrollTrigger.create({
 					trigger: pillSection,
@@ -384,6 +400,34 @@ export default function scrollAnimation(params) {
 					onLeaveBack: () => {
 						document.body.classList.add("is-light")
 					},
+				});
+
+				ScrollTrigger.create({
+					trigger: "#pill-scene",
+					start: `+=${window.innerHeight/2} top`,
+					end: `${window.innerHeight*1.5} top`,
+					scroller: scrollBlock,
+
+					onEnter: () => {
+						document.body.classList.remove("is-light")
+					},
+		
+					onLeaveBack: () => {
+						document.body.classList.add("is-light")
+					},
+
+					onUpdate: (self) => {
+						pillDecorImages.map((image, index) => {
+							const elementProgress = (index + 1) / pillDecorImages.length;
+							if (elementProgress < self.progress) {
+								pillDecorImages.map((subimage, subindex) => {
+									if(subindex != index) subimage.style.removeProperty("visibility");
+								})
+
+								image.style.visibility = "visible";
+							}
+						})
+					}
 				});
 			
 				pillScrollTimeline.kill();
@@ -399,6 +443,18 @@ export default function scrollAnimation(params) {
 						pin: true,
 						pinSpacing: false,
 						scroller: scrollBlock,
+						/* onUpdate: (self) => {
+							//console.log(pillDecorImages)
+							pillDecorImages.map((image, index) => {
+								const elementProgress = (index + 1) / pillDecorImages.length;
+								if (elementProgress < self.progress) {
+									pillDecorImages.map((subimage, subindex) => {
+										if(subindex != index) subimage.style.removeProperty("visibility");
+									})
+									image.style.visibility = "visible";
+								}
+							})
+						} */
 					}
 				});
 				
@@ -408,13 +464,13 @@ export default function scrollAnimation(params) {
 					transform: "rotate(0deg) scale(0.5)"
 				})
 
-				gsap.set(pillSectionDecorElements[0], {
+				/* gsap.set(pillSectionDecorElements[0], {
 					transform: "translate3d(-99.5%,-50%,0)",
 				})
 
 				gsap.set(pillSectionDecorElements[1], {
 					transform: "translate3d(-0.5%,-50%,0)",
-				})
+				}) */
 			
 				pillScrollTimeline.to(html, 
 				{
@@ -434,19 +490,24 @@ export default function scrollAnimation(params) {
 				pillScrollTimeline.to(pillSectionTitle, {
 					visibility: "visible",
 					duration: 1,
-				})
+				}, "-=1")
 			
-				pillScrollTimeline.to(pillSectionDecor, {
+				/* pillScrollTimeline.to(pillSectionDecor, {
 					transform: "translate3d(0,0,0) rotate(-25deg)",
 					duration: 2,
-				},"-=1")
+				},"-=1") */
 			
 				pillScrollTimeline.to(pillSectionTitle, {
 					transform: "translate3d(0,0,0) scale(0.5) rotate(-25deg)",
 					duration: 1,
 				},"-=2")
+
+				/* pillScrollTimeline.to(pillSectionTitle, {
+					transform: "translate3d(0,0,0) scale(0.5) rotate(-25deg)",
+					duration: 1,
+				}) */
 			
-				pillScrollTimeline.to(pillSectionDecorElements[0], {
+				/* pillScrollTimeline.to(pillSectionDecorElements[0], {
 					transform: `translate3d(-${window.innerWidth}px, -50%, 0) rotate(-25deg)`,
 					duration: 2,
 				},"-=1")
@@ -454,17 +515,21 @@ export default function scrollAnimation(params) {
 				pillScrollTimeline.to(pillSectionDecorElements[1], {
 					transform: `translate3d(${window.innerWidth}px, -50%, 0) rotate(25deg)`,
 					duration: 2,
-				},"-=2")
-			
+				},"-=2") */
+				pillScrollTimeline.to(pillSectionDecor, {
+					transform: "scale(2) translate3d(0,0,0)",
+					duration: 2,
+				}, "-=1")
+
 				pillScrollTimeline.to(pillSectionTitle, {
 					transform: "translate3d(0,0,0) scale(1) rotate(0deg)",
 					duration: 2,
-				},"-=1")
+				}, "-=2")
 				
-				pillScrollTimeline.to(pillSectionTitle, {
+				/* pillScrollTimeline.to(pillSectionTitle, {
 					transform: "translate3d(0,0,0) scale(1) rotate(0deg)",
 					duration: 0.2,
-				})
+				}) */
 		
 				feedbackScrollTimeline.kill();
 				feedbackScrollTimeline = gsap.timeline({
@@ -710,8 +775,8 @@ export default function scrollAnimation(params) {
 				const 
 				pillSection = document.querySelector(".pill"),
 				pillSectionTitle = pillSection.querySelectorAll(".pill__title"),
-				pillSectionDecor = pillSection.querySelector(".pill__decor"),
-				pillSectionDecorElements = pillSection.querySelectorAll(".pill__decor_item");
+				pillSectionDecor = pillSection.querySelector(".pill__decor");
+				//pillSectionDecorElements = pillSection.querySelectorAll(".pill__decor_item");
 
 				ScrollTrigger.create({
 					trigger: pillSection,
@@ -722,7 +787,44 @@ export default function scrollAnimation(params) {
 
 					onLeaveBack: (self) => {
 						document.body.classList.add("is-light")
+						pillSectionDecor.style.visibility = "hidden"
 					},
+
+					
+				});
+
+				ScrollTrigger.create({
+					trigger: "#pill-scene",
+					start: `+=${window.innerHeight/2} top`,
+					end: `${window.innerHeight*1.5} top`,
+
+					/* onEnter: () => {
+						pillSectionDecor.style.removeProperty("visibility")
+					},
+
+					onEnterBack: () => {
+						pillSectionDecor.style.visibility = "hidden"
+						console.log("leave")
+					}, */
+
+					onUpdate: (self) => {
+						if(self.progress == 0) {
+							pillDecorImages.map((image, index) => {
+								image.style.removeProperty("visibility");
+							})
+						}
+
+						pillDecorImages.map((image, index) => {
+							const elementProgress = (index + 1) / pillDecorImages.length;
+							if (elementProgress < self.progress) {
+								pillDecorImages.map((subimage, subindex) => {
+									if(subindex != index) subimage.style.removeProperty("visibility");
+								})
+
+								image.style.visibility = "visible";
+							}
+						})
+					}
 				});
 			
 				pillScrollTimeline.kill();
@@ -746,13 +848,13 @@ export default function scrollAnimation(params) {
 					transform: "rotate(0deg) scale(0.5)"
 				})
 
-				gsap.set(pillSectionDecorElements[0], {
+				/* gsap.set(pillSectionDecorElements[0], {
 					transform: "translate3d(-99.5%,-50%,0)",
 				})
 
 				gsap.set(pillSectionDecorElements[1], {
 					transform: "translate3d(-0.5%,-50%,0)",
-				})
+				}) */
 			
 				pillScrollTimeline.to(html, 
 				{
@@ -765,44 +867,48 @@ export default function scrollAnimation(params) {
 				})
 			
 				pillScrollTimeline.to(pillSectionDecor, {
-					transform: "translate3d(0,0,0)",
+					transform: "scale(1) translate3d(0,0,0)",
 					duration: 2,
 				})
 			
 				pillScrollTimeline.to(pillSectionTitle, {
 					visibility: "visible",
 					duration: 1,
-				})
+				}, "-=1")
 			
-				pillScrollTimeline.to(pillSectionDecor, {
+				/* pillScrollTimeline.to(pillSectionDecor, {
 					transform: "translate3d(0,0,0) rotate(-25deg)",
 					duration: 2,
-				},"-=1")
+				},"-=1") */
 			
 				pillScrollTimeline.to(pillSectionTitle, {
 					transform: "translate3d(0,0,0) scale(0.5) rotate(-25deg)",
 					duration: 1,
 				},"-=2")
+
+				/* pillScrollTimeline.to(pillSectionTitle, {
+					transform: "translate3d(0,0,0) scale(0.5) rotate(-25deg)",
+					duration: 1,
+				}) */
 			
-				pillScrollTimeline.to(pillSectionDecorElements[0], {
-					transform: `translate3d(-${window.innerWidth*1.2}px,-50%,0) rotate(-25deg)`,
+				/* pillScrollTimeline.to(pillSectionDecorElements[0], {
+					transform: `translate3d(-${window.innerWidth}px, -50%, 0) rotate(-25deg)`,
 					duration: 2,
 				},"-=1")
 			
 				pillScrollTimeline.to(pillSectionDecorElements[1], {
-					transform: `translate3d(${window.innerWidth*1.2}px,-50%,0) rotate(25deg)`,
+					transform: `translate3d(${window.innerWidth}px, -50%, 0) rotate(25deg)`,
 					duration: 2,
-				},"-=2")
-			
+				},"-=2") */
+				pillScrollTimeline.to(pillSectionDecor, {
+					transform: "scale(2) translate3d(0,0,0)",
+					duration: 2,
+				}, "-=1")
+
 				pillScrollTimeline.to(pillSectionTitle, {
 					transform: "translate3d(0,0,0) scale(1) rotate(0deg)",
 					duration: 2,
-				},"-=1")
-				
-				pillScrollTimeline.to(pillSectionTitle, {
-					transform: "translate3d(0,0,0) scale(1) rotate(0deg)",
-					duration: 0.2,
-				})
+				}, "-=2")
 			
 				/* gsap.set(html, {
 					'--background-color': "rgb(3,3,4)",
